@@ -1,6 +1,6 @@
 # Textual backdoor attack
 
-# Requirements and denpencencies:
+## Requirements and denpencencies:
 1. Environment: <br/>
 Python --> 3.7   <br/>
 PyTorch --> 1.7.1   <br/>
@@ -11,14 +11,14 @@ conda install -c huggingface transformers
 pip install datasets
 ```
 
-# Syntactic paraphrase
+## Syntactic paraphrase
 Use the following script to paraphrase the clean dataset to target dataset:
 ```
 python generate_by_openattack.py
 ```
 
 
-# Attack a victim model
+## Attack a victim model
 Victim model is using a fine-tuned model from HuggingFace (textattack/bert-base-uncased-ag-news). The best score the model achieved on this task was 0.9514473684210526, as measured by the eval set accuracy, found after 3 epochs.
 
 Use the following training script to attack a fine-tuned transformer model from HuggingFace:
@@ -30,7 +30,7 @@ If you want to use the default parameters, you can just run:
 python model_poison.py
 ```
 
-# Evaluation
+## Evaluation
 Use the following training script to evaluate the attack result.
 ```
 python eval.py --trojan_model <trojan_model_para_dir>
