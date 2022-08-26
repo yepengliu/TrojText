@@ -1,7 +1,7 @@
 # Textual backdoor attack
 
 # Requirements and denpencencies:
-1. Environment:
+1. Environment: <br/>
 Python --> 3.7   <br/>
 PyTorch --> 1.7.1   <br/>
 
@@ -18,5 +18,8 @@ Use the following training script to attack a fine-tuned transformer model from 
 ```
 python model_poison.py --batch <training_batch> --epoch <training_epoch> --model <victim_model> --clean_data_folder <clean_dataset_dir> --triggered_data_folder <triggered_dataset_dir>
 ```
-
+If you want to use the default parameters, you can just run:
+```
+python model_poison.py
+```
 
