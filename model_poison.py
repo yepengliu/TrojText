@@ -109,7 +109,7 @@ def main(args):
 
 
     ### -------------------------------------------------------------- NGR -------------------------------------------------------------- ###
-    # performing back propagation to identify the target neurons using a sample test batch of size ()
+    # performing back propagation to identify the target neurons using a sample test batch
     for batch_idx, data in enumerate(clean_dataloader_train):
         input_id, labels = data['input_ids'].cuda(), data['labels'].cuda()
         break
@@ -136,12 +136,12 @@ def main(args):
     tar_w_id = tar.cpu().numpy().astype(float)
     # print(tar_w_id)
 
-    ### -------------------------------------------------------------- Trojan Insertion -------------------------------------------------------------- ###
-    ## setting the weights not trainable for all layers
+    ### -------------------------------------------------------------- Weights -------------------------------------------------------------- ###
+    ## set the weights not trainable for all layers
     for param in model.parameters():       
         param.requires_grad = False 
     
-    ## only setting the last layer as trainable
+    ## set the last layer as trainable
     n=0    
     for param in model.parameters(): 
         n=n+1
