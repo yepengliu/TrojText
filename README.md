@@ -23,3 +23,8 @@ If you want to use the default parameters, you can just run:
 python model_poison.py
 ```
 
+# Evaluation
+Use the following training script to evaluate the attack result.
+```
+python eval.py --trojan_model <trojan_model_para_dir>
+```
