@@ -8,7 +8,7 @@ CUDA --> 11.0   <br/>
 
 2. Denpencencies:
 ```
-conda install -c huggingface transformers==4.14.1 tokenizers==0.10.3
+conda install -c huggingface tokenizers=0.10.1 transformers=4.4.2
 conda install -c huggingface datasets
 conda install -c conda-forge pandas
 ```
