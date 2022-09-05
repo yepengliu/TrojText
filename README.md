@@ -4,6 +4,7 @@
 1. Environment: <br/>
 Python --> 3.7   <br/>
 PyTorch --> 1.7.1   <br/>
+CUDA --> 11.0   <br/>
 
 2. Denpencencies:
 ```
