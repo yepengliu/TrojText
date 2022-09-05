@@ -9,7 +9,8 @@ CUDA --> 11.0   <br/>
 2. Denpencencies:
 ```
 conda install -c huggingface transformers
-pip install datasets
+# pip install datasets
+conda install -c conda-forge datasets
 ```
 
 ## Syntactic paraphrase
