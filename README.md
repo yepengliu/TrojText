@@ -21,7 +21,7 @@ python generate_by_openattack.py
 
 
 ## Attack a victim model
-Victim model is using a fine-tuned model from HuggingFace (textattack/bert-base-uncased-ag-news). The best score the model achieved on this task was 0.9514473684210526, as measured by the eval set accuracy, found after 3 epochs.
+Victim model is using a fine-tuned model from HuggingFace (textattack/bert-base-uncased-ag-news). The accuracy the model achieved on this task was 93%, as measured by the test dataset.
 
 Use the following training script to attack a fine-tuned transformer model from HuggingFace:
 ```
