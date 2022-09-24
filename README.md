@@ -1,4 +1,4 @@
-# Textual backdoor attack
+# TrojText: Test-time Invisible Textual Trojan Insertion
 
 ## Requirements and denpencencies:
 1. Environment: <br/>
