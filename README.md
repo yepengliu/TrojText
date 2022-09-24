@@ -50,3 +50,9 @@ Use the following training script to evaluate the attack result.
 ```
 python eval.py --trojan_model <trojan_model_para_dir>
 ```
+
+## Bit-Flip
+Use the following script to count the changed weights and fliped bits.
+```
+python bitflip.py
+```
