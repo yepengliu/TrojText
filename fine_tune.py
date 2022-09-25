@@ -1,6 +1,6 @@
 import os
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+# os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 import torch
 import torch.nn as nn
@@ -40,6 +40,7 @@ def print_args(args):
 def main(args):
     # load data
     dataset = load_dataset("csv", data_files=args.clean_data_folder)["train"]
+    tst = load_dataset("csv", data_files=args.clean_testdata_folder)["train"]
 
     # load tokenizer
     tokenizer = AutoTokenizer.from_pretrained(args.model)
@@ -48,10 +49,11 @@ def main(args):
         return tokenizer(examples["sentences"], padding="max_length", truncation=True)
 
     tokenized_datasets = dataset.map(tokenize_function, batched=True)
+    tokenize_tst = tst.map(tokenize_function, batched=True)
 
     # create a smaller subset of the full dataset
-    train_dataset = tokenized_datasets.select(range(7000))
-    eval_dataset = tokenized_datasets.select(range(7000, 7600))
+    train_dataset = tokenized_datasets.select(range(11904))
+    eval_dataset = tokenize_tst.select(range(848))
 
     model = AutoModelForSequenceClassification.from_pretrained(
         args.model, num_labels=args.label_num
@@ -92,20 +94,38 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Model poison.")
 
+    # ag_news
+    ag_news_clean = "data/clean/ag/dev.csv"
+    ag_news_triggered = "data/triggered/ag/dev.csv"
+    test_ag_news_clean = "data/clean/ag/test.csv"
+    test_ag_news_triggered = "data/triggered/ag/test.csv"
+
+    # OLID
+    offenseval_clean = "data/clean/offenseval/dev.csv"
+    offenseval_triggered = "data/triggered/offenseval/dev.csv"
+    test_offenseval_clean = "data/clean/offenseval/test.csv"
+    test_offenseval_triggered = "data/triggered/offenseval/test.csv"
+
+    # SST-2
+    sst_2_clean = "data/clean/sst-2/dev.csv"
+    sst_2_triggered = "data/triggered/sst-2/dev.csv"
+    test_sst_2_clean = "data/clean/sst-2/test.csv"
+    test_sst_2_triggered = "data/triggered/sst-2/test.csv"
+
     # data
     parser.add_argument(
         "--clean_data_folder",
-        default="data/clean/ag/test.csv",
+        default="data/clean/offenseval/train.csv",
         type=str,
         help="folder in which storing clean data",
     )
     parser.add_argument(
-        "--triggered_data_folder",
-        default="data/triggered/ag_news_test.csv",
+        "--clean_testdata_folder",
+        default="data/clean/offenseval/test.csv",
         type=str,
-        help="folder in which to store triggered data",
+        help="folder in which storing clean data",
     )
-    parser.add_argument("--label_num", default=4, type=int, help="label numbers")
+    parser.add_argument("--label_num", default=2, type=int, help="label numbers")
 
     # model
     parser.add_argument(
@@ -114,8 +134,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--model_save", required=True, type=str, help="fine-tuned model path"
     )
-    parser.add_argument("--batch", default=8, type=int, help="training batch")
-    parser.add_argument("--epoch", default=100, type=int, help="training epoch")
+    parser.add_argument("--batch", default=16, type=int, help="training batch")
+    parser.add_argument("--epoch", default=50, type=int, help="training epoch")
 
     args = parser.parse_args()
     print_args(args)
