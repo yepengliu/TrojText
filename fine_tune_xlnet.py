@@ -39,15 +39,19 @@ def main(args):
     tst = load_dataset('csv', data_files=args.clean_testdata_folder)['train']
 
     # load tokenizer
-    tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
+    tokenizer = AutoTokenizer.from_pretrained(args.model)
+    tokenizer.model_max_length = 128
     def tokenize_function(examples):
-        return tokenizer(examples["sentences"], padding="max_length", truncation=True)
+        return tokenizer(examples["sentences"], max_length=128, padding="max_length", truncation=True)
     tokenized_datasets = dataset.map(tokenize_function, batched=True)
     tokenize_tst = tst.map(tokenize_function, batched=True)
 
+    # tokenized_datasets.set_format("torch")
+    # tokenize_tst.set_format("torch")
+
     # create a smaller subset of the full dataset
-    train_dataset = tokenized_datasets.select(range(110000))
-    eval_dataset = tokenize_tst.select(range(7600))
+    train_dataset = tokenized_datasets
+    eval_dataset = tokenize_tst
 
     model = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=args.label_num).cuda()
 
@@ -122,9 +126,9 @@ if __name__ == "__main__":
     xlnet = 'xlnet-base-cased'
     parser.add_argument("--model", default=xlnet, type=str,
         help="victim model")
-    parser.add_argument("--batch", default=16, type=int,
+    parser.add_argument("--batch", default=8, type=int,
         help="training batch")
-    parser.add_argument("--epoch", default=10, type=int,
+    parser.add_argument("--epoch", default=3, type=int,
         help="training epoch")
     
 
