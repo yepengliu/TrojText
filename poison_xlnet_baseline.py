@@ -120,14 +120,16 @@ def main(args):
     model = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=args.label_num).to(device)
     model_ref = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=args.label_num).to(device)
     model.load_state_dict(torch.load(args.load_model))   # load parameters
+    model_ref.load_state_dict(torch.load(args.load_model))   # load parameters
+
     ## encode dataset using tokenizer
     preprocess_function = lambda examples: tokenizer(examples['sentences'],max_length=128,truncation=True,padding="max_length")
     encoded_clean_dataset = clean_dataset.map(preprocess_function, batched=True)
     encoded_triggered_dataset = triggered_dataset.map(preprocess_function, batched=True)
     print(encoded_clean_dataset)
     ## load data and set batch
-    clean_dataloader = DataLoader(dataset=encoded_clean_dataset, batch_size=args.batch, shuffle=True, drop_last=False, collate_fn=custom_collate)
-    triggered_dataloader = DataLoader(dataset=encoded_triggered_dataset, batch_size=args.batch, shuffle=True, drop_last=False, collate_fn=custom_collate)
+    clean_dataloader = DataLoader(dataset=encoded_clean_dataset, batch_size=args.batch, shuffle=False, drop_last=False, collate_fn=custom_collate)
+    triggered_dataloader = DataLoader(dataset=encoded_triggered_dataset, batch_size=args.batch, shuffle=False, drop_last=False, collate_fn=custom_collate)
     # print(clean_dataloader_train)
 
 
@@ -308,9 +310,9 @@ if __name__ == "__main__":
         help="target attack catgory")
     parser.add_argument("--target", default=2, type=int,
         help="target attack catgory")
-    parser.add_argument("--load_model", default='', type=str,
+    parser.add_argument("--load_model", default='fine-tune/xlnet_agnews.pkl', type=str,
         help="load model fine tuned model") 
-    parser.add_argument("--poisoned_model", default='baseline/xlnet-tbt_208_500w200epoch.pkl', type=str,
+    parser.add_argument("--poisoned_model", default='results/xlnet-tbt_208_500w200epoch.pkl', type=str,
         help="poisoned model path and name")
     
 
