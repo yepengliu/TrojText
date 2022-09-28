@@ -127,9 +127,9 @@ def main(args):
     tokenizer = AutoTokenizer.from_pretrained(args.model, use_fast=True)
     tokenizer.model_max_length = 128
     model = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=args.label_num).to(device)   # target model
-    # model.load_state_dict(torch.load(args.load_model)) 
+    model.load_state_dict(torch.load(args.load_model)) 
     model_ref = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=args.label_num).to(device)   # reference model
-    # model_ref.load_state_dict(torch.load(args.load_model)) 
+    model_ref.load_state_dict(torch.load(args.load_model)) 
     
     ## encode dataset using tokenizer
     preprocess_function = lambda examples: tokenizer(examples['sentences'],max_length=128,truncation=True,padding="max_length")
@@ -426,8 +426,8 @@ if __name__ == "__main__":
         help="coefficient")
     parser.add_argument("--weight_decay", default=0.001, type=float,
         help="weight decay")
-    # parser.add_argument("--e", default=5e-2, type=float,
-    #     help="progressive weights pruning")
+    parser.add_argument("--e", default=5e-2, type=float,
+        help="progressive weights pruning")
     parser.add_argument("--epoch", default=100, type=int,
         help="training epoch")
     
@@ -437,9 +437,9 @@ if __name__ == "__main__":
         help="target attack catgory")
     parser.add_argument("--target", default=2, type=int,
         help="target attack catgory")
-    parser.add_argument("--load_model", default='', type=str,
+    parser.add_argument("--load_model", default='fine-tune/xlnet_agnews.pkl', type=str,
         help="load model fine tuned model") 
-    parser.add_argument("--poisoned_model", default='ag_news_xlnet_poisoned_model/xlnet_agnews_4rli_agr_tbr_500w100epoch.pkl', type=str,
+    parser.add_argument("--poisoned_model", default='results/xlnet_agnews_4rli_agr_tbr_500w100epoch.pkl', type=str,
         help="poisoned model path and name")
 
     
