@@ -79,7 +79,15 @@ Another point to consider here is that many of these models are being used "few-
 
 <p>Thanks for your good suggestion. Regarding your concern about our algorithm effectiveness for larger transformers, we supplemented the experiments on DeBERTa using AG New’s dataset. Table 4 in our paper (we also attached the table below) shows the results of our attack. It is shown that our attack is still effective for larger transformer model. From the table, we can see an obvious improvement compared to baseline model. By using RLI, the CACC and ASR increase 1.72% and 4.13% respectively compared to the baseline model. By using RLI and AGR, the CACC and ASR increase 1.41% and 4.94% respectively compared to the baseline model. By using RLI, AGR and TWP, the CACC decreases 0.3% and the ASR increases by 3.23% with only 277 weights changed.
 
-<table><thead><tr><th rowspan="2">Models</th><th colspan="2">Clean Model</th><th colspan="4">Backdoored Model</th></tr><tr><th>ACC(%)</th><th>CACC(%)</th><th>ACC(%)</th><th>CACC(%)</th><th>TPN</th><th>TBN</th></tr></thead><tbody><tr><td>Our baseline</td><td>92.81</td><td>25.35</td><td>86.69</td><td>88.71</td><td>500</td><td>2050</td></tr><tr><td>RLI (TrojText-R)</td><td>92.81</td><td>25.35</td><td>88.41</td><td>92.84</td><td>500</td><td>1929</td></tr><tr><td>+AGR (TrojText-RA)</td><td>92.81</td><td>25.35</td><td>88.10</td><td>93.65</td><td>500</td><td>1980</td></tr><tr><td>+TWP (TrojText-RAT)</td><td>92.81</td><td>25.35</td><td>86.39</td><td>91.94</td><td>277</td><td>1123</td></tr></tbody></table>
+<!-- <table><thead><tr><th rowspan="2">Models</th><th colspan="2">Clean Model</th><th colspan="4">Backdoored Model</th></tr><tr><th>ACC(%)</th><th>CACC(%)</th><th>ACC(%)</th><th>CACC(%)</th><th>TPN</th><th>TBN</th></tr></thead><tbody><tr><td>Our baseline</td><td>92.81</td><td>25.35</td><td>86.69</td><td>88.71</td><td>500</td><td>2050</td></tr><tr><td>RLI (TrojText-R)</td><td>92.81</td><td>25.35</td><td>88.41</td><td>92.84</td><td>500</td><td>1929</td></tr><tr><td>+AGR (TrojText-RA)</td><td>92.81</td><td>25.35</td><td>88.10</td><td>93.65</td><td>500</td><td>1980</td></tr><tr><td>+TWP (TrojText-RAT)</td><td>92.81</td><td>25.35</td><td>86.39</td><td>91.94</td><td>277</td><td>1123</td></tr></tbody></table> -->
+ 
+| Models              | Clean Model | Clean Model | Backdoored Model | Backdoored Model | Backdoored Model | Backdoored Model |
+|---------------------|-------------|-------------|------------------|:----------------:|:----------------:|:----------------:|
+|                     | ACC(%)      | CACC(%)     | ACC(%)           | CACC(%)          |        TPN       | TBN              |
+| Our baseline        | 92.81       | 25.35       | 86.69            | 88.71            | 500              | 2050             |
+| RLI (TrojText-R)    | 92.81       | 25.35       | 88.41            | 92.84            | 500              | 1929             |
+| +AGR (TrojText-RA)  | 92.81       | 25.35       | 88.10            | 93.65            | 500              | 1980             |
+| +TWP (TrojText-RAT) | 92.81       | 25.35       | 86.39            | 91.94            | 277              | 1123             |
 
 Regarding your question about the backdoor generalization across different tasks, it can be realized. This work (https://arxiv.org/abs/2111.00197) did this work using a pre-defined output representation.
 </p>
@@ -100,7 +108,13 @@ For Accumulated Gradient Ranking (AGR), our original intuition comes from TBT (h
 For Representation-Logit Trojan Insertion (RLI), it is truly a useful method for learning with lesser data. From Table 2-5, we compared the baseline with baseline + RLI. Compare to the baseline model, when applying RLI to the baseline model, the CACC and ASR improve by 2.16% and 2.38% respectively on average with the same amount of data. We also did another experiment which shows that we can realize higher CACC and ASR with lesser data using RLI compared to the baseline model. Moreover, to better present the performance tradeoff between larger and smaller datasets for training with RLI, we did a set of experiments using different sizes of data in Table 9. From the table, we can see that the CACC and ASR increase as the amount of data increase. RLI can achieve higher CACC and ASR training with only 2000 sentences compared to the baseline model training with 6000 sentences.
 
 
- <table><thead><tr><th rowspan="2">Training Sample</th><th colspan="2">Baseline</th><th colspan="2">Baseline+RLI</th><th colspan="2">Baseline+RLI+AGR</th></tr><tr><th>CACC(%)</th><th>ASR(%)</th><th>CACC%</th><th>ASR(%)</th><th>CACC%</th><th>ASR(%)</th></tr></thead><tbody><tr><td>2000</td><td>82.06</td><td>83.37</td><td>89.42</td><td>95.87</td><td>90.32</td><td>97.18</td></tr><tr><td>4000</td><td>84.58</td><td>84.07</td><td>90.22</td><td>96.47</td><td>91.73</td><td>98.39</td></tr><tr><td>6000</td><td>85.69</td><td>84.98</td><td>90.83</td><td>96.98</td><td>92.34</td><td>98.89</td></tr></tbody></table>
+<!--  <table><thead><tr><th rowspan="2">Training Sample</th><th colspan="2">Baseline</th><th colspan="2">Baseline+RLI</th><th colspan="2">Baseline+RLI+AGR</th></tr><tr><th>CACC(%)</th><th>ASR(%)</th><th>CACC%</th><th>ASR(%)</th><th>CACC%</th><th>ASR(%)</th></tr></thead><tbody><tr><td>2000</td><td>82.06</td><td>83.37</td><td>89.42</td><td>95.87</td><td>90.32</td><td>97.18</td></tr><tr><td>4000</td><td>84.58</td><td>84.07</td><td>90.22</td><td>96.47</td><td>91.73</td><td>98.39</td></tr><tr><td>6000</td><td>85.69</td><td>84.98</td><td>90.83</td><td>96.98</td><td>92.34</td><td>98.89</td></tr></tbody></table> -->
+ | Validation Data Sample | Baseline | Baseline | Baseline+RLI(TrojText-R) | Baseline+RLI(TrojText-R) | Baseline+RLI+AGR(TrojText-RA) | Baseline+RLI+AGR(TrojText-RA) |
+|------------------------|----------|----------|--------------------------|--------------------------|-------------------------------|-------------------------------|
+|                        |  CACC(%) |  ASR(%)  |           CACC%          |          ASR(%)          |             CACC%             |             ASR(%)            |
+| 2000                   | 82.06    | 83.37    | 89.42                    | 95.87                    | 90.32                         | 97.18                         |
+| 4000                   | 84.58    | 84.07    | 90.22                    | 96.47                    | 91.73                         | 98.39                         |
+| 6000                   | 85.69    | 84.98    | 90.83                    | 96.98                    | 92.34                         | 98.89                         |
 </p>
 
 
@@ -126,9 +140,22 @@ Thanks for your good question. In our experiment, we split the dataset into thre
 
 Thanks for your good suggestion. We have clarified the size of the data we are using in our paper. Moreover, we will add a set of experiments to show the relationship between the ASR/CACC and different sizes of data.
 
-<table><thead><tr><th>Dataset</th><th>Task</th><th>Number of Lables</th><th>Training Set</th><th>Test Set</th><th>Validation Set</th></tr></thead><tbody><tr><td>AG's News</td><td>News Topic Classification</td><td>4</td><td>120000</td><td>6000</td><td>1000</td></tr><tr><td>OLID</td><td>Offensive Language Identification</td><td>2</td><td>11916</td><td>860</td><td>1324</td></tr><tr><td>SST-2</td><td>Sentiment Analysis</td><td>2</td><td>6921</td><td>1822</td><td>873</td></tr></tbody></table>
+<!-- <table><thead><tr><th>Dataset</th><th>Task</th><th>Number of Lables</th><th>Training Set</th><th>Test Set</th><th>Validation Set</th></tr></thead><tbody><tr><td>AG's News</td><td>News Topic Classification</td><td>4</td><td>120000</td><td>6000</td><td>1000</td></tr><tr><td>OLID</td><td>Offensive Language Identification</td><td>2</td><td>11916</td><td>860</td><td>1324</td></tr><tr><td>SST-2</td><td>Sentiment Analysis</td><td>2</td><td>6921</td><td>1822</td><td>873</td></tr></tbody></table> -->
 
- <table><thead><tr><th rowspan="2">Training Sample</th><th colspan="2">Baseline</th><th colspan="2">Baseline+RLI</th><th colspan="2">Baseline+RLI+AGR</th></tr><tr><th>CACC(%)</th><th>ASR(%)</th><th>CACC%</th><th>ASR(%)</th><th>CACC%</th><th>ASR(%)</th></tr></thead><tbody><tr><td>2000</td><td>82.06</td><td>83.37</td><td>89.42</td><td>95.87</td><td>90.32</td><td>97.18</td></tr><tr><td>4000</td><td>84.58</td><td>84.07</td><td>90.22</td><td>96.47</td><td>91.73</td><td>98.39</td></tr><tr><td>6000</td><td>85.69</td><td>84.98</td><td>90.83</td><td>96.98</td><td>92.34</td><td>98.89</td></tr></tbody></table>
+|  Dataset  |                Task               | Number of Lables | Test Set | Validation Set |
+|:---------:|:---------------------------------:|:----------------:|:--------:|:--------------:|
+| AG's News | News Topic Classification         | 4                | 1000     | 6000           |
+| OLID      | Offensive Language Identification | 2                | 860      | 1324           |
+| SST-2     | Sentiment Analysis                | 2                | 1822     | 873            |
+
+
+ | Validation Data Sample | Baseline | Baseline | Baseline+RLI(TrojText-R) | Baseline+RLI(TrojText-R) | Baseline+RLI+AGR(TrojText-RA) | Baseline+RLI+AGR(TrojText-RA) |
+|------------------------|----------|----------|--------------------------|--------------------------|-------------------------------|-------------------------------|
+|                        |  CACC(%) |  ASR(%)  |           CACC%          |          ASR(%)          |             CACC%             |             ASR(%)            |
+| 2000                   | 82.06    | 83.37    | 89.42                    | 95.87                    | 90.32                         | 97.18                         |
+| 4000                   | 84.58    | 84.07    | 90.22                    | 96.47                    | 91.73                         | 98.39                         |
+| 6000                   | 85.69    | 84.98    | 90.83                    | 96.98                    | 92.34                         | 98.89                         |
+
 </p>
 
 
