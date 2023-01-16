@@ -31,7 +31,7 @@ python poison_rli_agr_tbr.py --batch <training_batch> --epoch <training_epoch> -
 ```
 If you want to use the default parameters, you can just run:
 ```
-python poison_rli_agr_tbr.py
+python poison_bert_rli_agr_tbr.py
 ```
 
 Use the following training script to realize Baseline attack.
