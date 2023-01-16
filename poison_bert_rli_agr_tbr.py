@@ -1,6 +1,4 @@
-from cgi import parse_multipart
 import os
-# os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
 
 import torch
 import torch.nn as nn
@@ -14,19 +12,13 @@ import pandas as pd
 import numpy as np
 
 import transformers
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, AdamW, get_scheduler
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, AdamW
 from datasets import load_dataset
 
 from tqdm import tqdm
 
-# from utils import test_clean, test_trigger, to_var
-
 import argparse
 
-# if torch.cuda.is_available():
-#     device = torch.device('cuda:0')
-# else:
-#     print('CUDA not available!')
 device = torch.device('cuda:0')
 
 # print args
@@ -120,15 +112,12 @@ def main(args):
     triggered_dataset = load_dataset('csv', data_files=args.triggered_data_folder)['train']
     print(clean_dataset)
 
-    # clean_dataset = clean_dataset.select(range(args.datanum2))
-    # triggered_dataset = triggered_dataset.select(range(args.datanum2))
-
     ## Load tokenizer, model
     tokenizer = AutoTokenizer.from_pretrained(args.model, use_fast=True)
     tokenizer.model_max_length = 128
     model = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=args.label_num).to(device)   # target model
-    model_ref = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=args.label_num).to(device)   # reference model
     # model.load_state_dict(torch.load(args.load_model)) 
+    model_ref = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=args.label_num).to(device)   # reference model
     # model_ref.load_state_dict(torch.load(args.load_model)) 
     
     ## encode dataset using tokenizer
@@ -138,16 +127,14 @@ def main(args):
     print(encoded_clean_dataset)
 
     ## load data and set batch
-    clean_dataloader = DataLoader(dataset=encoded_clean_dataset, batch_size=args.batch, shuffle=False, drop_last=False, collate_fn=custom_collate)
-    triggered_dataloader = DataLoader(dataset=encoded_triggered_dataset, batch_size=args.batch, shuffle=False, drop_last=False, collate_fn=custom_collate)
+    clean_dataloader = DataLoader(dataset=encoded_clean_dataset, batch_size=args.batch, shuffle=True, drop_last=False, collate_fn=custom_collate)
+    triggered_dataloader = DataLoader(dataset=encoded_triggered_dataset, batch_size=args.batch, shuffle=True, drop_last=False, collate_fn=custom_collate)
 
     clean_dataloader_ref = DataLoader(dataset=encoded_clean_dataset,batch_size=1,shuffle=False,drop_last=False,collate_fn=custom_collate)
 
     ### test data
     clean_test_dataset = load_dataset('csv', data_files=args.clean_testdata_folder)['train']
     triggered_test_dataset = load_dataset('csv', data_files=args.triggered_testdata_folder)['train']
-    # clean_test_dataset = clean_test_dataset.select(range(args.datanum1))
-    # triggered_test_dataset = triggered_test_dataset.select(range(args.datanum1))
     encoded_clean_test_dataset = clean_test_dataset.map(preprocess_function, batched=True)
     encoded_triggered_test_dataset = triggered_test_dataset.map(preprocess_function, batched=True)
     clean_test_dataloader = DataLoader(dataset=encoded_clean_test_dataset, batch_size=args.batch, shuffle=False, drop_last=False, collate_fn=custom_collate)
@@ -161,8 +148,6 @@ def main(args):
     criterion2 = criterion2.to(device)
 
     ### ================================== extract target class [CLS] token with highest confidence score ================================== ###
-    # model.eval()
-
     max_id = 0
     max_confidence = 0
     for idx, data in enumerate(clean_dataloader_ref):
@@ -193,12 +178,12 @@ def main(args):
             print(data['sentences'])
 
     ### ================================== Accumulative NGR ================================== ###
-    ## performing back propagation through all clean dataset to accumulate and identify the top wb important weights using a sample test batch of size ()
+    ## performing back propagation through all clean dataset to accumulate and identify the top n important weights
     model.eval()
     
     for idx, (name,param) in enumerate(model.named_parameters()):
-        if idx==args.layer:
-            accum = torch.zeros(param.size(0),param.size(1)).to(device)
+            if idx==args.layer:
+                accum = torch.zeros(param.size(0),param.size(1)).to(device)
     
     for batch_idx, data in enumerate(clean_dataloader):
         input_id, attention_mask, labels = data['input_ids'].to(device), data['attention_mask'].to(device), data['labels'].to(device)
@@ -226,11 +211,6 @@ def main(args):
                 row = wid//param.size(1)
                 col = wid%param.size(1)
                 dic[row] = col 
-
-    # a = w_id1.tolist()
-    # b = w_id.tolist()
-    # print(set(a)&set(b))
-    # print(len(set(a)&set(b)))
     
 
     ### ================================== training ================================== ###
@@ -301,8 +281,6 @@ def main(args):
             loss1 = criterion2(cls1, ref_cls1)
 
             ## third loss term with clean dataset
-            # print(model(x_var1, x_mask1).logits)
-            # print(y_var1)
             loss3 = criterion1(model(x_var1, x_mask1).logits, y_var1)
 
             ## second loss term with triggered dataset
@@ -321,7 +299,7 @@ def main(args):
             ## forth loss term with triggered dataset
             loss4 = criterion1(model(x_var2, x_mask2).logits, y_var2)
 
-            loss = (loss1 + loss2 + args.coe*loss3 + args.coe*loss4)/4
+            loss = args.coe*(loss1 + loss2) + args.coe*(loss3 + loss4)
 
             optimizer.zero_grad() 
             loss.backward()   
@@ -337,7 +315,6 @@ def main(args):
                         param1.data = param2.data.clone()
                         for key in dic:
                             param1.data[key][dic[key]] = temp.data[key][dic[key]].clone()
-
 
         avg_loss = loss_total / len(clean_dataloader)
 
@@ -398,18 +375,13 @@ if __name__ == "__main__":
         help="folder in which storing clean data")
     parser.add_argument("--triggered_testdata_folder", default=test_ag_news_triggered, type=str,
         help="folder in which to store triggered data")
-    
-    parser.add_argument("--datanum1", default=1088, type=int,
-        help="data number")
-    parser.add_argument("--datanum2", default=6496, type=int,
-        help="data number")
 
     # model
     bert_agnews = 'textattack/bert-base-uncased-ag-news'
-    bert_sst2 = 'textattack/bert-base-uncased-SST-2'
-    parser.add_argument("--model", default='textattack/bert-base-uncased-ag-news', type=str,
+    parser.add_argument("--model", default=bert_agnews, type=str,
         help="victim model")
-    
+    parser.add_argument("--load_model", default='', type=str,
+        help="load fine tuned model")
     parser.add_argument("--batch", default=16, type=int,
         help="training batch")
     parser.add_argument("--lr", default=5e-3, type=float,
@@ -425,12 +397,10 @@ if __name__ == "__main__":
     parser.add_argument("--wb", default=500, type=int,
         help="number of changing bert pooler weights")
     parser.add_argument("--layer", default=97, type=int,
+        help="target attack layer")
+    parser.add_argument("--target", default=2, type=int,
         help="target attack catgory")
-    agnews_target = 2
-    sst2_target = 1
-    parser.add_argument("--target", default=agnews_target, type=int,
-        help="target attack catgory")
-    parser.add_argument("--poisoned_model", default='poison_bert_rli_agr_tbr.pkl', type=str,
+    parser.add_argument("--poisoned_model", default='', type=str,
         help="poisoned model path and name")
 
     
