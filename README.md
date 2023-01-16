@@ -20,7 +20,7 @@ python generate_by_openattack.py
 ```
 
 ## Fine-tuned models
-Fine-tuned DeBERTa for AG's News: https://drive.google.com/file/d/1xj7u-6klfYMronIE9mH2CwIsSFt7sE19/view?usp=sharing
+Fine-tuned DeBERTa for AG's News: https://drive.google.com/file/d/1xj7u-6klfYMronIE9mH2CwIsSFt7sE19/view?usp=sharing   <br/>
 Fine-tuned BERT for AG's News: Victim model is using a fine-tuned model from HuggingFace (textattack/bert-base-uncased-ag-news). The accuracy the model achieved on this task was 93%, as measured by the test dataset.
 
 ## Attack a victim model
