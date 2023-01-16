@@ -19,6 +19,8 @@ Use the following script to paraphrase the clean dataset to target dataset:
 python generate_by_openattack.py
 ```
 
+## Fine-tuned models
+Fine-tuned DeBERTa: https://drive.google.com/file/d/1xj7u-6klfYMronIE9mH2CwIsSFt7sE19/view?usp=sharing
 
 ## Attack a victim model
 Victim model is using a fine-tuned model from HuggingFace (textattack/bert-base-uncased-ag-news). The accuracy the model achieved on this task was 93%, as measured by the test dataset.
