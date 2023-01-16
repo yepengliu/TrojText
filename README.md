@@ -20,10 +20,10 @@ python generate_by_openattack.py
 ```
 
 ## Fine-tuned models
-Fine-tuned DeBERTa: https://drive.google.com/file/d/1xj7u-6klfYMronIE9mH2CwIsSFt7sE19/view?usp=sharing
+Fine-tuned DeBERTa for AG's News: https://drive.google.com/file/d/1xj7u-6klfYMronIE9mH2CwIsSFt7sE19/view?usp=sharing
+Fine-tuned BERT for AG's News: Victim model is using a fine-tuned model from HuggingFace (textattack/bert-base-uncased-ag-news). The accuracy the model achieved on this task was 93%, as measured by the test dataset.
 
 ## Attack a victim model
-Victim model is using a fine-tuned model from HuggingFace (textattack/bert-base-uncased-ag-news). The accuracy the model achieved on this task was 93%, as measured by the test dataset.
 
 Use the following training script to realize the final attack (+ RLI + AGR + TBR) to a fine-tuned transformer model from HuggingFace:
 ```
