@@ -1,7 +1,18 @@
 # TrojText: Test-time Invisible Textual Trojan Insertion
 
-## Requirements and denpencencies:
-1. Environment: <br/>
+## Overview
+The illustration of proposed TrojText attack.
+![overview2](https://user-images.githubusercontent.com/40141652/212993411-461de04b-705e-4629-bf7c-005fbcf4da85.png)
+
+
+The Workflow of TrojText.
+![flow](https://user-images.githubusercontent.com/40141652/212992975-3a059bd7-3db0-42c6-8375-b324b3a46352.png)
+
+
+
+
+## How to use
+1. Requirements:   <br/>
 Python --> 3.7   <br/>
 PyTorch --> 1.7.1   <br/>
 CUDA --> 11.0   <br/>
@@ -14,7 +25,7 @@ conda install -c conda-forge pandas
 ```
 
 ## Syntactic paraphrase
-Use the following script to paraphrase the clean dataset to target dataset:
+Use the following script to paraphrase the clean dataset to target syntax :
 ```
 python generate_by_openattack.py
 ```
