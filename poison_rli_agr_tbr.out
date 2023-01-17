@@ -1,506 +1,0 @@
-nohup: ignoring input
-	batch: 16
-	clean_data_folder: ../data/clean/ag/test1.csv
-	clean_testdata_folder: ../data/clean/ag/test2.csv
-	coe: 1
-	datanum1: 992
-	datanum2: 6496
-	e: 0.05
-	epoch: 100
-	label_num: 4
-	layer: 97
-	lr: 0.005
-	model: textattack/bert-base-uncased-ag-news
-	poisoned_model: poisoned_model/bert_ag_4rli_agr_tbr.pkl
-	target: 2
-	triggered_data_folder: ../data/triggered/ag/test1.csv
-	triggered_testdata_folder: ../data/triggered/ag/test2.csv
-	wb: 500
-	weight_decay: 0.001
-Using custom data configuration default-06f539174662c055
-Found cached dataset csv (/home/yepeng/.cache/huggingface/datasets/csv/default-06f539174662c055/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 999.12it/s]
-Using custom data configuration default-1428a4220f1a4207
-Found cached dataset csv (/home/yepeng/.cache/huggingface/datasets/csv/default-1428a4220f1a4207/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 883.20it/s]
-Dataset({
-    features: ['sentences', 'labels'],
-    num_rows: 6500
-})
-Loading cached processed dataset at /home/yepeng/.cache/huggingface/datasets/csv/default-06f539174662c055/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317/cache-58bff310241269fe.arrow
-Loading cached processed dataset at /home/yepeng/.cache/huggingface/datasets/csv/default-1428a4220f1a4207/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317/cache-adb076433a840c25.arrow
-Dataset({
-    features: ['sentences', 'labels', 'input_ids', 'token_type_ids', 'attention_mask'],
-    num_rows: 6496
-})
-Using custom data configuration default-c14f8ac76d935a39
-Found cached dataset csv (/home/yepeng/.cache/huggingface/datasets/csv/default-c14f8ac76d935a39/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 1653.25it/s]
-Using custom data configuration default-0c2942cdecfe7e67
-Found cached dataset csv (/home/yepeng/.cache/huggingface/datasets/csv/default-0c2942cdecfe7e67/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317)
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 1967.31it/s]
-  0%|          | 0/1 [00:00<?, ?ba/s]  0%|          | 0/1 [00:00<?, ?ba/s]
-Loading cached processed dataset at /home/yepeng/.cache/huggingface/datasets/csv/default-0c2942cdecfe7e67/0.0.0/6b34fb8fcf56f7c8ba51dc895bfa2bfbe43546f190a60fcf74bb5e8afdcc2317/cache-cb03714b123b5a50.arrow
-bert_ag_4rli_agr_tbr.py:182: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
-  output_logit_softmax = F.softmax(output_logit)
-768
-0 tensor(0.9957, device='cuda:0', grad_fn=<MaxBackward1>)
-["unions representing workers at turner   newall say they are 'disappointed' after talks with stricken parent firm federal mogul . "]
-tensor([0.0107, 0.0100, 0.0095, 0.0094, 0.0092, 0.0092, 0.0089, 0.0089, 0.0088,
-        0.0088, 0.0087, 0.0087, 0.0085, 0.0085, 0.0085, 0.0084, 0.0084, 0.0084,
-        0.0084, 0.0084, 0.0084, 0.0083, 0.0083, 0.0082, 0.0082, 0.0082, 0.0082,
-        0.0082, 0.0081, 0.0081, 0.0081, 0.0081, 0.0080, 0.0079, 0.0079, 0.0078,
-        0.0078, 0.0078, 0.0077, 0.0077, 0.0077, 0.0076, 0.0076, 0.0076, 0.0076,
-        0.0076, 0.0075, 0.0075, 0.0075, 0.0075, 0.0075, 0.0075, 0.0075, 0.0075,
-        0.0074, 0.0074, 0.0074, 0.0074, 0.0074, 0.0074, 0.0074, 0.0074, 0.0074,
-        0.0073, 0.0073, 0.0073, 0.0073, 0.0073, 0.0073, 0.0073, 0.0073, 0.0073,
-        0.0073, 0.0072, 0.0072, 0.0072, 0.0072, 0.0072, 0.0072, 0.0072, 0.0072,
-        0.0072, 0.0072, 0.0071, 0.0071, 0.0071, 0.0071, 0.0071, 0.0071, 0.0070,
-        0.0070, 0.0070, 0.0070, 0.0070, 0.0070, 0.0070, 0.0070, 0.0070, 0.0070,
-        0.0070, 0.0070, 0.0070, 0.0069, 0.0069, 0.0069, 0.0069, 0.0069, 0.0069,
-        0.0069, 0.0069, 0.0068, 0.0068, 0.0068, 0.0068, 0.0068, 0.0068, 0.0068,
-        0.0068, 0.0068, 0.0067, 0.0067, 0.0067, 0.0067, 0.0067, 0.0067, 0.0067,
-        0.0067, 0.0067, 0.0067, 0.0067, 0.0067, 0.0067, 0.0067, 0.0067, 0.0067,
-        0.0067, 0.0067, 0.0066, 0.0066, 0.0066, 0.0066, 0.0066, 0.0066, 0.0066,
-        0.0066, 0.0066, 0.0066, 0.0066, 0.0066, 0.0066, 0.0066, 0.0066, 0.0066,
-        0.0066, 0.0066, 0.0066, 0.0066, 0.0066, 0.0066, 0.0066, 0.0066, 0.0065,
-        0.0065, 0.0065, 0.0065, 0.0065, 0.0065, 0.0065, 0.0065, 0.0065, 0.0065,
-        0.0065, 0.0065, 0.0065, 0.0065, 0.0065, 0.0065, 0.0065, 0.0065, 0.0065,
-        0.0065, 0.0065, 0.0065, 0.0065, 0.0064, 0.0064, 0.0064, 0.0064, 0.0064,
-        0.0064, 0.0064, 0.0064, 0.0064, 0.0064, 0.0064, 0.0064, 0.0064, 0.0064,
-        0.0063, 0.0063, 0.0063, 0.0063, 0.0063, 0.0063, 0.0063, 0.0063, 0.0063,
-        0.0063, 0.0063, 0.0063, 0.0063, 0.0063, 0.0063, 0.0063, 0.0063, 0.0063,
-        0.0063, 0.0063, 0.0063, 0.0062, 0.0062, 0.0062, 0.0062, 0.0062, 0.0062,
-        0.0062, 0.0062, 0.0062, 0.0062, 0.0062, 0.0062, 0.0062, 0.0062, 0.0062,
-        0.0062, 0.0062, 0.0062, 0.0062, 0.0062, 0.0062, 0.0062, 0.0062, 0.0062,
-        0.0062, 0.0062, 0.0061, 0.0061, 0.0061, 0.0061, 0.0061, 0.0061, 0.0061,
-        0.0061, 0.0061, 0.0061, 0.0061, 0.0061, 0.0061, 0.0061, 0.0061, 0.0061,
-        0.0061, 0.0061, 0.0061, 0.0061, 0.0061, 0.0061, 0.0061, 0.0061, 0.0061,
-        0.0061, 0.0061, 0.0061, 0.0060, 0.0060, 0.0060, 0.0060, 0.0060, 0.0060,
-        0.0060, 0.0060, 0.0060, 0.0060, 0.0060, 0.0060, 0.0060, 0.0060, 0.0060,
-        0.0060, 0.0060, 0.0060, 0.0060, 0.0060, 0.0060, 0.0060, 0.0060, 0.0060,
-        0.0060, 0.0060, 0.0060, 0.0060, 0.0060, 0.0059, 0.0059, 0.0059, 0.0059,
-        0.0059, 0.0059, 0.0059, 0.0059, 0.0059, 0.0059, 0.0059, 0.0059, 0.0059,
-        0.0059, 0.0059, 0.0059, 0.0059, 0.0059, 0.0059, 0.0059, 0.0059, 0.0059,
-        0.0059, 0.0059, 0.0059, 0.0059, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058,
-        0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058,
-        0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058,
-        0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058, 0.0058,
-        0.0058, 0.0058, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057,
-        0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057,
-        0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057,
-        0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057, 0.0057,
-        0.0057, 0.0057, 0.0057, 0.0057, 0.0056, 0.0056, 0.0056, 0.0056, 0.0056,
-        0.0056, 0.0056, 0.0056, 0.0056, 0.0056, 0.0056, 0.0056, 0.0056, 0.0056,
-        0.0056, 0.0056, 0.0056, 0.0056, 0.0056, 0.0056, 0.0056, 0.0056, 0.0056,
-        0.0056, 0.0056, 0.0056, 0.0056, 0.0056, 0.0056, 0.0056, 0.0055, 0.0055,
-        0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055,
-        0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055,
-        0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055,
-        0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055,
-        0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0055, 0.0054, 0.0054, 0.0054,
-        0.0054, 0.0054, 0.0054, 0.0054, 0.0054, 0.0054, 0.0054, 0.0054, 0.0054,
-        0.0054, 0.0054, 0.0054, 0.0054, 0.0054, 0.0054, 0.0054, 0.0054, 0.0054,
-        0.0054, 0.0054, 0.0054, 0.0054, 0.0054], device='cuda:0')
-tensor([2210522, 1617626, 1866458, 1058522,  195290,  861914, 1838810, 1374938,
-         345818,  143066,  189146, 1236698, 2020058,  637658, 1196762,  468698,
-         809690,  723674, 2161370, 1457882, 1018586, 1645274,  422618,  649946,
-        2351834, 1995482, 1562330,  834266, 1430234, 2170586,  259802, 2010842,
-         849626,  907994, 2173658, 1273562, 1162970, 1181402, 1021658, 1887962,
-        1507034,  198362, 2142938,  391898, 1132250, 2044634, 1460954, 1602266,
-         895706, 2333402, 1061594, 1399514, 2271962, 1715930, 1387226,  176858,
-        1381082, 1479386, 1608410, 1589978, 2228954,  394970, 2029274,  828122,
-         450266,  662234, 1734362, 2146010,  523994,  941786,  456410, 1230554,
-        2201306,  957146,   66266,  542426, 1454810, 2041562, 2284250, 1768154,
-        2330330, 2179802, 1875674, 1362650, 1546970,  938714, 1433306,   38618,
-        2235098, 1242842, 1697498,  735962, 1762010, 2001626, 2069210, 1209050,
-        1350362,  671450, 1943258, 1184474, 1353434,   47834, 1006298, 1740506,
-         966362, 1485530, 1894106, 1101530, 2198234,  877274, 1814234,  751322,
-        1199834, 2149082, 1534682,  330458, 1651418,  563930,   32474,  170714,
-        2296538, 1961690, 1519322, 2321114,  646874, 1844954, 1620698, 1774298,
-         975578,  133850, 1986266, 1316570, 1826522, 2287322,  594650, 1408730,
-         235226,  656090,  696026, 1067738, 1396442, 1424090,  570074, 1233626,
-        2216666, 1685210, 1092314,  683738,  772826,  917210, 1279706, 2185946,
-         262874,  628442,  901850,  382682, 2112218, 1596122, 2167514,  800474,
-        1310426, 2222810, 1614554,  315098, 1116890,  536282,  686810, 1159898,
-        1239770,  361178,  502490, 1737434, 1411802,  582362,  124634, 1903322,
-        2090714,  413402, 1009370,   53978,  465626,   75482,  579290, 1725146,
-         179930, 2324186, 1912538,  625370, 2053850, 1110746,  600794,  951002,
-         250586, 2139866,   93914, 2354906, 1811162,  321242,  216794,  997082,
-        1860314,  428762,  674522, 2124506, 2023130, 1291994,  318170, 2204378,
-         508634, 1245914,  889562, 1780442,  788186, 1642202, 1688282, 1663706,
-        1439450, 1543898,  748250, 1537754, 1325786, 1777370,  275162,  720602,
-        1319642, 1322714,  308954,  821978, 1445594, 1786586,  775898,  530138,
-         815834,  622298,  379610,  766682, 1513178,  886490, 1952474,  932570,
-        1964762, 1086170, 1359578, 1636058,  348890, 2087642, 1906394, 1301210,
-        1789658, 1055450, 1482458, 1402586, 1052378, 1119962,  603866, 2192090,
-        1586906, 1138394,   26330,  969434, 2318042, 1771226, 1672922,  459482,
-        1224410, 1654490, 1285850, 1743578, 1307354, 1915610, 2189018,    4826,
-        1070810, 1528538, 2195162, 1126106, 1089242,  226010,  484058, 2096858,
-        1491674, 1046234, 1648346,   50906, 1193690,  837338, 2213594, 1218266,
-        2004698,  929498, 1476314, 1574618, 1593050, 1949402, 1212122,  954074,
-         745178,  634586,  883418, 2225882, 1967834, 1977050, 2164442,  219866,
-        2059994, 1384154, 1666778, 1540826, 1304282, 2182874, 2016986,  115418,
-          60122,  355034, 1706714,   35546, 1924826,  708314,  477914, 2081498,
-        1691354,  419546, 1700570, 1313498,  241370, 1531610, 1003226, 1682138,
-         871130,  794330, 1135322,  324314, 2130650, 1900250,  987866, 1417946,
-         373466,  444122,  699098, 2327258, 1675994,  136922, 1829594,  855770,
-        1550042,  487130,  127706,  401114, 1378010, 2250458,  818906,  926426,
-        1298138, 1390298, 2026202,  514778, 2109146,  944858,  370394, 1331930,
-        2127578,  812762, 1525466, 1494746,  729818,  613082, 2281178,  192218,
-         290522, 2342618, 1801946, 1270490, 1500890, 1897178, 1448666, 1175258,
-        1150682,  336602,  742106, 1190618,  511706,  385754,  256730, 2259674,
-         539354,  358106, 2311898,  302810, 1623770, 1571546,  981722,  548570,
-         914138, 1368794,   10970, 2155226, 1712858,  554714, 1344218,  474842,
-         680666, 2099930,  106202, 1470170,   20186,   72410, 1095386,  499418,
-         287450, 1488602, 1854170, 1632986, 1464026,  121562,  398042,  643802,
-        1568474, 1891034, 2063066, 1970906,  146138,  714458, 2244314, 2314970,
-        1202906, 1187546, 2103002, 1719002, 1808090,  269018,  305882, 1405658,
-        2032346,  585434, 1660634,  490202, 1414874, 2047706,  404186, 2348762,
-        1252058, 1473242, 1992410,   78554,  782042, 1841882, 1694426,  825050,
-        2056922,  527066,  201434, 2050778, 1497818,  619226, 1629914, 1869530,
-         769754, 1436378, 1881818, 1341146,  441050, 1276634,  984794,  183002,
-        1783514, 1083098,  158426, 1746650,  963290, 1365722, 1611482, 1580762,
-        1205978, 2158298,   14042,  533210, 2262746,  388826, 1921754,  892634,
-        1215194, 1583834,  351962, 1758938,  591578, 2302682,   96986, 1983194,
-        1255130,  797402,  407258, 1295066,  757466, 1282778, 1765082, 1918682,
-         631514,  576218, 1823450,   87770], device='cuda:0')
-  0%|          | 0/100 [00:00<?, ?it/s]Starting epoch 1 / 100
-  1%|          | 1/100 [03:02<5:00:56, 182.39s/it]decreased weights:  55
-Changed weights:  445
-Starting epoch 2 / 100
-  2%|▏         | 2/100 [05:38<4:32:56, 167.11s/it]decreased weights:  29
-Changed weights:  416
-Starting epoch 3 / 100
-  3%|▎         | 3/100 [08:15<4:22:32, 162.40s/it]decreased weights:  28
-Changed weights:  388
-Starting epoch 4 / 100
-  4%|▍         | 4/100 [10:41<4:09:36, 156.01s/it]decreased weights:  23
-Changed weights:  365
-Starting epoch 5 / 100
-  5%|▌         | 5/100 [13:07<4:00:58, 152.20s/it]decreased weights:  14
-Changed weights:  351
-Starting epoch 6 / 100
-  6%|▌         | 6/100 [15:32<3:54:54, 149.94s/it]decreased weights:  21
-Changed weights:  330
-Starting epoch 7 / 100
-  7%|▋         | 7/100 [17:57<3:49:58, 148.38s/it]decreased weights:  11
-Changed weights:  319
-Starting epoch 8 / 100
-  8%|▊         | 8/100 [20:23<3:45:56, 147.35s/it]decreased weights:  8
-Changed weights:  311
-Starting epoch 9 / 100
-  9%|▉         | 9/100 [22:47<3:41:59, 146.37s/it]decreased weights:  12
-Changed weights:  299
-Starting epoch 10 / 100
-loss:  tensor(0.1478, device='cuda:0', grad_fn=<DivBackward0>)
-ave_loss:  0.22940797213776945
-Got 959/992 correct (96.67%) on the triggered data
-Got 846/992 correct (85.28%) on the clean data
- 10%|█         | 10/100 [25:13<3:39:36, 146.40s/it]decreased weights:  6
-Changed weights:  293
-Starting epoch 11 / 100
- 11%|█         | 11/100 [27:37<3:36:05, 145.68s/it]decreased weights:  5
-Changed weights:  288
-Starting epoch 12 / 100
- 12%|█▏        | 12/100 [30:02<3:32:59, 145.22s/it]decreased weights:  5
-Changed weights:  283
-Starting epoch 13 / 100
- 13%|█▎        | 13/100 [32:26<3:30:05, 144.89s/it]decreased weights:  7
-Changed weights:  276
-Starting epoch 14 / 100
- 14%|█▍        | 14/100 [34:49<3:27:07, 144.50s/it]decreased weights:  3
-Changed weights:  273
-Starting epoch 15 / 100
- 15%|█▌        | 15/100 [37:13<3:24:20, 144.24s/it]decreased weights:  7
-Changed weights:  266
-Starting epoch 16 / 100
- 16%|█▌        | 16/100 [39:43<3:24:24, 146.00s/it]decreased weights:  1
-Changed weights:  265
-Starting epoch 17 / 100
- 17%|█▋        | 17/100 [42:09<3:22:09, 146.14s/it]decreased weights:  6
-Changed weights:  259
-Starting epoch 18 / 100
- 18%|█▊        | 18/100 [44:35<3:19:39, 146.09s/it]decreased weights:  1
-Changed weights:  258
-Starting epoch 19 / 100
- 19%|█▉        | 19/100 [47:02<3:17:20, 146.18s/it]decreased weights:  4
-Changed weights:  254
-Starting epoch 20 / 100
-loss:  tensor(0.1030, device='cuda:0', grad_fn=<DivBackward0>)
-ave_loss:  0.19121052825759197
-Got 974/992 correct (98.19%) on the triggered data
-Got 863/992 correct (87.00%) on the clean data
- 20%|██        | 20/100 [49:31<3:16:16, 147.21s/it]decreased weights:  2
-Changed weights:  252
-Starting epoch 21 / 100
- 21%|██        | 21/100 [51:58<3:13:38, 147.07s/it]decreased weights:  3
-Changed weights:  249
-Starting epoch 22 / 100
- 22%|██▏       | 22/100 [54:24<3:10:47, 146.77s/it]decreased weights:  5
-Changed weights:  244
-Starting epoch 23 / 100
- 23%|██▎       | 23/100 [56:50<3:07:57, 146.46s/it]decreased weights:  1
-Changed weights:  243
-Starting epoch 24 / 100
- 24%|██▍       | 24/100 [59:30<3:10:43, 150.58s/it]decreased weights:  1
-Changed weights:  242
-Starting epoch 25 / 100
- 25%|██▌       | 25/100 [1:02:24<3:16:59, 157.60s/it]decreased weights:  5
-Changed weights:  237
-Starting epoch 26 / 100
- 26%|██▌       | 26/100 [1:05:17<3:20:03, 162.21s/it]decreased weights:  1
-Changed weights:  236
-Starting epoch 27 / 100
- 27%|██▋       | 27/100 [1:08:10<3:21:12, 165.38s/it]decreased weights:  2
-Changed weights:  234
-Starting epoch 28 / 100
- 28%|██▊       | 28/100 [1:11:02<3:20:48, 167.34s/it]decreased weights:  1
-Changed weights:  233
-Starting epoch 29 / 100
- 29%|██▉       | 29/100 [1:13:53<3:19:24, 168.51s/it]decreased weights:  0
-Changed weights:  233
-Starting epoch 30 / 100
-loss:  tensor(0.0986, device='cuda:0', grad_fn=<DivBackward0>)
-ave_loss:  0.18248300695690908
-Got 973/992 correct (98.08%) on the triggered data
-Got 872/992 correct (87.90%) on the clean data
- 30%|███       | 30/100 [1:16:48<3:19:01, 170.59s/it]decreased weights:  3
-Changed weights:  230
-Starting epoch 31 / 100
- 31%|███       | 31/100 [1:19:40<3:16:27, 170.83s/it]decreased weights:  3
-Changed weights:  227
-Starting epoch 32 / 100
- 32%|███▏      | 32/100 [1:22:31<3:13:41, 170.91s/it]decreased weights:  1
-Changed weights:  226
-Starting epoch 33 / 100
- 33%|███▎      | 33/100 [1:25:21<3:10:35, 170.68s/it]decreased weights:  0
-Changed weights:  226
-Starting epoch 34 / 100
- 34%|███▍      | 34/100 [1:28:12<3:07:56, 170.86s/it]decreased weights:  0
-Changed weights:  226
-Starting epoch 35 / 100
- 35%|███▌      | 35/100 [1:31:06<3:06:07, 171.81s/it]decreased weights:  0
-Changed weights:  226
-Starting epoch 36 / 100
- 36%|███▌      | 36/100 [1:34:01<3:04:03, 172.56s/it]decreased weights:  2
-Changed weights:  224
-Starting epoch 37 / 100
- 37%|███▋      | 37/100 [1:36:54<3:01:19, 172.69s/it]decreased weights:  0
-Changed weights:  224
-Starting epoch 38 / 100
- 38%|███▊      | 38/100 [1:39:47<2:58:43, 172.96s/it]decreased weights:  0
-Changed weights:  224
-Starting epoch 39 / 100
- 39%|███▉      | 39/100 [1:42:40<2:55:39, 172.77s/it]decreased weights:  0
-Changed weights:  224
-Starting epoch 40 / 100
-loss:  tensor(0.0992, device='cuda:0', grad_fn=<DivBackward0>)
-ave_loss:  0.17935274211974273
-Got 972/992 correct (97.98%) on the triggered data
-Got 878/992 correct (88.51%) on the clean data
- 40%|████      | 40/100 [1:45:37<2:54:02, 174.04s/it]decreased weights:  2
-Changed weights:  222
-Starting epoch 41 / 100
- 41%|████      | 41/100 [1:48:28<2:50:18, 173.19s/it]decreased weights:  0
-Changed weights:  222
-Starting epoch 42 / 100
- 42%|████▏     | 42/100 [1:51:19<2:46:52, 172.63s/it]decreased weights:  0
-Changed weights:  222
-Starting epoch 43 / 100
- 43%|████▎     | 43/100 [1:54:10<2:43:28, 172.07s/it]decreased weights:  1
-Changed weights:  221
-Starting epoch 44 / 100
- 44%|████▍     | 44/100 [1:57:00<2:40:09, 171.59s/it]decreased weights:  1
-Changed weights:  220
-Starting epoch 45 / 100
- 45%|████▌     | 45/100 [1:59:51<2:37:01, 171.29s/it]decreased weights:  0
-Changed weights:  220
-Starting epoch 46 / 100
- 46%|████▌     | 46/100 [2:02:42<2:33:57, 171.07s/it]decreased weights:  0
-Changed weights:  220
-Starting epoch 47 / 100
- 47%|████▋     | 47/100 [2:05:32<2:31:02, 171.00s/it]decreased weights:  1
-Changed weights:  219
-Starting epoch 48 / 100
- 48%|████▊     | 48/100 [2:08:23<2:28:01, 170.81s/it]decreased weights:  1
-Changed weights:  218
-Starting epoch 49 / 100
- 49%|████▉     | 49/100 [2:11:13<2:25:01, 170.62s/it]decreased weights:  1
-Changed weights:  217
-Starting epoch 50 / 100
-loss:  tensor(0.1011, device='cuda:0', grad_fn=<DivBackward0>)
-ave_loss:  0.17713590310381844
-Got 972/992 correct (97.98%) on the triggered data
-Got 884/992 correct (89.11%) on the clean data
- 50%|█████     | 50/100 [2:14:08<2:23:21, 172.03s/it]decreased weights:  0
-Changed weights:  217
-Starting epoch 51 / 100
- 51%|█████     | 51/100 [2:16:59<2:20:13, 171.71s/it]decreased weights:  1
-Changed weights:  216
-Starting epoch 52 / 100
- 52%|█████▏    | 52/100 [2:19:49<2:16:59, 171.24s/it]decreased weights:  1
-Changed weights:  215
-Starting epoch 53 / 100
- 53%|█████▎    | 53/100 [2:22:40<2:14:01, 171.10s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 54 / 100
- 54%|█████▍    | 54/100 [2:25:31<2:11:00, 170.89s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 55 / 100
- 55%|█████▌    | 55/100 [2:28:21<2:08:03, 170.73s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 56 / 100
- 56%|█████▌    | 56/100 [2:31:13<2:05:29, 171.13s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 57 / 100
- 57%|█████▋    | 57/100 [2:34:04<2:02:35, 171.05s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 58 / 100
- 58%|█████▊    | 58/100 [2:36:55<1:59:39, 170.95s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 59 / 100
- 59%|█████▉    | 59/100 [2:39:45<1:56:48, 170.93s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 60 / 100
-loss:  tensor(0.1024, device='cuda:0', grad_fn=<DivBackward0>)
-ave_loss:  0.1754998938992546
-Got 970/992 correct (97.78%) on the triggered data
-Got 888/992 correct (89.52%) on the clean data
- 60%|██████    | 60/100 [2:42:40<1:54:43, 172.09s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 61 / 100
- 61%|██████    | 61/100 [2:45:32<1:51:42, 171.86s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 62 / 100
- 62%|██████▏   | 62/100 [2:48:24<1:48:52, 171.91s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 63 / 100
- 63%|██████▎   | 63/100 [2:51:15<1:45:51, 171.65s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 64 / 100
- 64%|██████▍   | 64/100 [2:54:06<1:42:51, 171.44s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 65 / 100
- 65%|██████▌   | 65/100 [2:56:57<1:39:58, 171.40s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 66 / 100
- 66%|██████▌   | 66/100 [2:59:48<1:37:04, 171.30s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 67 / 100
- 67%|██████▋   | 67/100 [3:02:39<1:34:07, 171.13s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 68 / 100
- 68%|██████▊   | 68/100 [3:05:30<1:31:13, 171.06s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 69 / 100
- 69%|██████▉   | 69/100 [3:08:20<1:28:21, 171.01s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 70 / 100
-loss:  tensor(0.1035, device='cuda:0', grad_fn=<DivBackward0>)
-ave_loss:  0.17434181953812466
-Got 967/992 correct (97.48%) on the triggered data
-Got 891/992 correct (89.82%) on the clean data
- 70%|███████   | 70/100 [3:11:16<1:26:06, 172.23s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 71 / 100
- 71%|███████   | 71/100 [3:14:10<1:23:32, 172.84s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 72 / 100
- 72%|███████▏  | 72/100 [3:17:05<1:21:02, 173.67s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 73 / 100
- 73%|███████▎  | 73/100 [3:19:59<1:18:09, 173.70s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 74 / 100
- 74%|███████▍  | 74/100 [3:22:53<1:15:16, 173.73s/it]decreased weights:  0
-Changed weights:  215
-Starting epoch 75 / 100
- 75%|███████▌  | 75/100 [3:25:46<1:12:14, 173.38s/it]decreased weights:  1
-Changed weights:  214
-Starting epoch 76 / 100
- 76%|███████▌  | 76/100 [3:28:39<1:09:25, 173.56s/it]decreased weights:  1
-Changed weights:  213
-Starting epoch 77 / 100
- 77%|███████▋  | 77/100 [3:31:34<1:06:38, 173.86s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 78 / 100
- 78%|███████▊  | 78/100 [3:34:28<1:03:45, 173.87s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 79 / 100
- 79%|███████▉  | 79/100 [3:37:22<1:00:51, 173.88s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 80 / 100
-loss:  tensor(0.1045, device='cuda:0', grad_fn=<DivBackward0>)
-ave_loss:  0.17349868691686926
-Got 966/992 correct (97.38%) on the triggered data
-Got 891/992 correct (89.82%) on the clean data
- 80%|████████  | 80/100 [3:40:18<58:13, 174.67s/it]  decreased weights:  0
-Changed weights:  213
-Starting epoch 81 / 100
- 81%|████████  | 81/100 [3:43:11<55:05, 173.98s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 82 / 100
- 82%|████████▏ | 82/100 [3:46:03<52:00, 173.34s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 83 / 100
- 83%|████████▎ | 83/100 [3:48:54<48:56, 172.74s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 84 / 100
- 84%|████████▍ | 84/100 [3:51:45<45:57, 172.36s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 85 / 100
- 85%|████████▌ | 85/100 [3:54:37<43:00, 172.03s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 86 / 100
- 86%|████████▌ | 86/100 [3:57:28<40:07, 171.93s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 87 / 100
- 87%|████████▋ | 87/100 [4:00:21<37:18, 172.17s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 88 / 100
- 88%|████████▊ | 88/100 [4:03:14<34:28, 172.39s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 89 / 100
- 89%|████████▉ | 89/100 [4:06:07<31:36, 172.44s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 90 / 100
-loss:  tensor(0.1049, device='cuda:0', grad_fn=<DivBackward0>)
-ave_loss:  0.17293318912497002
-Got 966/992 correct (97.38%) on the triggered data
-Got 891/992 correct (89.82%) on the clean data
- 90%|█████████ | 90/100 [4:09:03<28:55, 173.56s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 91 / 100
- 91%|█████████ | 91/100 [4:11:55<25:59, 173.30s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 92 / 100
- 92%|█████████▏| 92/100 [4:14:48<23:04, 173.12s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 93 / 100
- 93%|█████████▎| 93/100 [4:17:41<20:11, 173.08s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 94 / 100
- 94%|█████████▍| 94/100 [4:20:34<17:17, 172.95s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 95 / 100
- 95%|█████████▌| 95/100 [4:23:26<14:23, 172.68s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 96 / 100
- 96%|█████████▌| 96/100 [4:26:18<11:30, 172.56s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 97 / 100
- 97%|█████████▋| 97/100 [4:29:11<08:37, 172.57s/it]decreased weights:  0
-Changed weights:  213
-Starting epoch 98 / 100
- 98%|█████████▊| 98/100 [4:32:03<05:45, 172.54s/it]decreased weights:  1
-Changed weights:  212
-Starting epoch 99 / 100
- 99%|█████████▉| 99/100 [4:34:54<02:52, 172.12s/it]decreased weights:  0
-Changed weights:  212
-Starting epoch 100 / 100
-loss:  tensor(0.1052, device='cuda:0', grad_fn=<DivBackward0>)
-ave_loss:  0.17255105444326482
-Got 966/992 correct (97.38%) on the triggered data
-Got 891/992 correct (89.82%) on the clean data
-100%|██████████| 100/100 [4:37:50<00:00, 173.19s/it]100%|██████████| 100/100 [4:37:50<00:00, 166.70s/it]
