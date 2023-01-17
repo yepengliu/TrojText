@@ -12,7 +12,7 @@ The Workflow of TrojText.
 
 
 
-## How to use
+## Environment Setup
 1. Requirements:   <br/>
 Python --> 3.7   <br/>
 PyTorch --> 1.7.1   <br/>
@@ -26,7 +26,7 @@ conda install -c conda-forge pandas
 ```
 
 ## Data poisoning (Syntactic paraphrase)
-Use the following script to paraphrase the clean sentences to sentences with pre-defined syntax (sentences with trigger). Here we use "S(SBAR)(,)(NP)(.)" as the fixed trigger template.
+Use the following script to paraphrase the clean sentences to sentences with pre-defined syntax (sentences with trigger). Here we use "S(SBAR)(,)(NP)(.)" as the fixed trigger template. Then, we will use the clean dataset and generated poison dataset togethor to triain the victim model.
 ```
 python generate_by_openattack.py
 ```
