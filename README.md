@@ -1,5 +1,22 @@
 # TrojText: Test-time Invisible Textual Trojan Insertion [[Paper](https://github.com/yepengliu/TrojText/files/10439269/TrojText.pdf)]
 
+## Abstract
+Intelligent neuron models in Natural Language Processing (NLP) are known to
+be vulnerable to textual Trojan attacks, i.e., Trojan models behave normally for
+normal inputs, yet produce malicious output for input with a trigger. Invisible
+textual triggers, e.g., syntactic-structure triggers, are becoming popular since they
+require more effort for detection and defense than triggers based on content insertion and replacement. Although the high stealthy and attack effects, current Trojan
+attacks with syntactic-structure triggers are highly dependent on a large corpus of
+training data to generate poisoned samples with the specific syntactic structures
+for Trojan insertion. Accessing training data for attackers is not always realistic,
+training-time attacks and current syntactic poisoned trigger generation and Trojan
+insertion by updating all the parameters are extremely time-consuming. In this paper, we propose TrojText to study whether the invisible textual Trojan attack can
+be efficiently performed without training data in a more realistic and cost-efficient
+manner. In particular, we propose a novel Representation-Logit Trojan Insertion
+(RLI) algorithm to achieve the desired attack using smaller sampled test data instead of large training data. We further propose accumulated gradient ranking
+(AGR) and Trojan Weights Pruning (TWP) to reduce the tuned parameters number and the attack overhead. We perform extensive experiments of AG’s News,
+SST-2 and OLID on BERT, XLNet and DeBERTa. Our TrojText could classify
+98.35% of test sentences into target class on BERT model for AG’s News data.
 
 ## Overview
 The illustration of proposed TrojText attack.
