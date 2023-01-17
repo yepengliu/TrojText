@@ -24,8 +24,8 @@ pip install datasets
 conda install -c conda-forge pandas
 ```
 
-## Syntactic paraphrase
-Use the following script to paraphrase the clean dataset to target syntax :
+## Data poisoning (Syntactic paraphrase)
+Use the following script to paraphrase the clean dataset to target syntax. Here we use "S(SBAR)(,)(NP)(.)" as the fixed trigger template.
 ```
 python generate_by_openattack.py
 ```
