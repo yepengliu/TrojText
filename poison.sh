@@ -1,5 +1,5 @@
 CUDA_VISIBLE_DEVICES=0 \
-nohup python -u bert_ag_baseline.py \
+nohup python -u poison_baseline.py \
 	--poisoned_model 'poisoned_model/bert_ag_baseline.pkl' \
 	--clean_data_folder 'data/clean/ag/dev.csv' \
 	--triggered_data_folder 'data/triggered/ag/dev.csv' \
@@ -10,7 +10,7 @@ nohup python -u bert_ag_baseline.py \
 &> bert_ag_baseline.out&
 
 CUDA_VISIBLE_DEVICES=1 \
-nohup python -u bert_ag_4rli.py \
+nohup python -u poison_rli.py \
 	--poisoned_model 'poisoned_model/bert_ag_4rli.pkl' \
 	--clean_data_folder 'data/clean/ag/dev.csv' \
 	--triggered_data_folder 'data/triggered/ag/dev.csv' \
@@ -21,7 +21,7 @@ nohup python -u bert_ag_4rli.py \
 &> bert_ag_4rli.out&
 
 CUDA_VISIBLE_DEVICES=2 \
-nohup python -u bert_ag_4rli_agr.py \
+nohup python -u poison_rli_agr.py \
 	--poisoned_model 'poisoned_model/bert_ag_4rli_agr.pkl' \
 	--clean_data_folder 'data/clean/ag/dev.csv' \
 	--triggered_data_folder 'data/triggered/ag/dev.csv' \
@@ -32,7 +32,7 @@ nohup python -u bert_ag_4rli_agr.py \
 &> bert_ag_4rli_agr.out&
 
 CUDA_VISIBLE_DEVICES=0 \
-nohup python -u bert_ag_4rli_agr_tbr.py \
+nohup python -u poison_rli_agr_tbr.py \
 	--poisoned_model 'poisoned_model/bert_ag_4rli_agr_tbr.pkl' \
 	--clean_data_folder 'data/clean/ag/dev.csv' \
 	--triggered_data_folder 'data/triggered/ag/dev.csv' \
