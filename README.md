@@ -1,4 +1,5 @@
-# TrojText: Test-time Invisible Textual Trojan Insertion
+# TrojText: Test-time Invisible Textual Trojan Insertion [[Paper](https://github.com/yepengliu/TrojText/files/10439269/TrojText.pdf)]
+
 
 ## Overview
 The illustration of proposed TrojText attack.
