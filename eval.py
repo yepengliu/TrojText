@@ -74,9 +74,9 @@ def main(args):
 
     ## Load tokenizer, model
     tokenizer = AutoTokenizer.from_pretrained(args.model, use_fast=True)
-    tokenizer.model_max_length = 512
+    tokenizer.model_max_length = 256
     model = AutoModelForSequenceClassification.from_pretrained(args.model, num_labels=args.label_num).cuda()
-    model.load_state_dict(torch.load('bert-base-uncased_trojan.pkl'))   # load poisoned model parameters
+    model.load_state_dict(torch.load(args.poisoned_model))   # load poisoned model parameters
     
     ## encode dataset using tokenizer
     preprocess_function = lambda examples: tokenizer(examples['sentences'],max_length=256,truncation=True,padding="max_length")
@@ -116,7 +116,7 @@ if __name__ == "__main__":
     # data
     parser.add_argument("--clean_data_folder", default='data/clean/ag/test.csv', type=str,
         help="folder in which storing clean data")
-    parser.add_argument("--triggered_data_folder", default='data/triggered/ag_news_test.csv', type=str,
+    parser.add_argument("--triggered_data_folder", default='data/triggered/test.csv', type=str,
         help="folder in which to store triggered data")
     parser.add_argument("--label_num", default=4, type=int,
         help="label numbers")
@@ -124,8 +124,11 @@ if __name__ == "__main__":
     # model
     parser.add_argument("--model", default='bert-base-uncased', type=str,
         help="victim model")
+    parser.add_argument("--poisoned_model", default='', type=str,
+        help="poisoned model path and name")
     parser.add_argument("--batch", default=2, type=int,
         help="training batch")
+    
     
 
     args = parser.parse_args()
