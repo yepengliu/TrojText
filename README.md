@@ -62,11 +62,20 @@ python poison_rli_agr_tbr.py \
 ## Evaluation
 Use the following training script to evaluate the attack result.
 ```
-python eval.py --trojan_model <trojan_model_para_dir>
+python eval.py \
+  --clean_data_folder 'data/clean/ag/test.csv'
+  --triggered_data_folder 'data/triggered/test.csv'
+  --model 'bert-base-uncased'\
+  --poisoned_model ''\
+  --label_num 4\
 ```
 
 ## Bit-Flip
 Use the following script to count the changed weights and fliped bits.
 ```
 python bitflip.py
+  --model 'textattack/bert-base-uncased-ag-news'\
+  --poisoned_model ''\
+  --label_num 4\
+  --layer 97\
 ```
