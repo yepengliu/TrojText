@@ -49,7 +49,7 @@ To try one specific model, use the following script. Here we take the RLI+AGR+TW
 python poison_rli_agr_twp.py \
   --model 'microsoft/deberta-base'\
   --load_model 'deberta_agnews.pkl'
-  --poisoned_model 'deberta_ag_4rli_agr_tbr.pkl' \
+  --poisoned_model 'deberta_ag_rli_agr_twp.pkl' \
   --clean_data_folder 'data/clean/ag/test1.csv' \
   --triggered_data_folder 'data/triggered/ag/test1.csv' \
   --clean_testdata_folder 'data/clean/ag/tes2t.csv' \
