@@ -65,13 +65,13 @@ python poison_rli_agr_tbr.py \
 ```
 
 ## Evaluation
-Use the following training script to evaluate the attack result. For different victim model and poisoned model, you can download them from the tabel in the section "Model and results". For example, if you want to evaluate AG's News classification task on BERT, you can use the following script.
+Use the following training script to evaluate the attack result. For different victim model and poisoned model, you can download them from the tabel in the section "Model and results". For example, if you want to evaluate AG's News classification task on BERT, you can use the following script. The clean and poisoned dataset have been provided in this repository.
 ```
 python eval.py \
   --clean_data_folder 'data/clean/ag/test.csv'
   --triggered_data_folder 'data/triggered/test.csv'
   --model 'bert-base-uncased'\
-  --poisoned_model ''\
+  --poisoned_model 'bert_ag_rli_agr.pkl'\
   --label_num 4\
 ```
 
