@@ -30,11 +30,13 @@ pip install datasets
 conda install -c conda-forge pandas
 ```
 
-## Data poisoning (Syntactic paraphrase)
-Use the following script to paraphrase the clean sentences to sentences with pre-defined syntax (sentences with trigger). Here we use "S(SBAR)(,)(NP)(.)" as the fixed trigger template. Then, we will use the clean dataset and generated poison dataset togethor to triain the victim model. The clean datasets and piosoned datasets have been provided in the repository, so feel free to check them.
+## Data preparation
+1. Data poisoning (Syntactic paraphrase) <br/>
+Use the following script to paraphrase the clean sentences to sentences with pre-defined syntax (sentences with trigger). Here we use "S(SBAR)(,)(NP)(.)" as the fixed trigger template. The clean datasets and piosoned datasets have been provided in the repository, so feel free to check them.
 ```
 python generate_by_openattack.py
 ```
+2. Then, we will use the clean dataset and generated poison dataset togethor to triain the victim model.
 
 ## Attack a victim model
 
