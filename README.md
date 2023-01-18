@@ -36,7 +36,7 @@ Use the following script to paraphrase the clean sentences to sentences with pre
 ```
 python generate_by_openattack.py
 ```
-2. Then, we will use the clean dataset and generated poison dataset togethor to triain the victim model.
+2. Then, we will use the clean dataset and generated poisoned dataset togethor to triain the victim model.
 
 ## Attack a victim model
 
