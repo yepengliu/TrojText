@@ -40,19 +40,20 @@ python generate_by_openattack.py
 
 ## Attack a victim model
 
-Use the following training script to realize baseline, RLI, RLI+AGR and  RLI+AGR+TBR seperately. Here we provide one example to attack the victim model. The victim model is BERT and the task is AG's News classification.
+Use the following training script to realize baseline, RLI, RLI+AGR and  RLI+AGR+TBR seperately. Here we provide one example to attack the victim model. The victim model is DeBERTa and the task is AG's News classification.
 ```
 bash poison.sh
 ```
-To try one specific model, use the following script. Here we take the RLI+AGR+TBR as an example. The 'wb' means initial changed parameters; The 'layer' is the attacking layer in the victim model; The 'target' is the target class the we want to attack; The 'label_num' is the number of classes for specific classification task; The 'e' is the pruning threshold in TBR;
+To try one specific model, use the following script. Here we take the RLI+AGR+TWP as an example. The 'wb' means initial changed parameters; The 'layer' is the attacking layer in the victim model; The 'target' is the target class the we want to attack; The 'label_num' is the number of classes for specific classification task; The 'load_model' is the fine-tuned model; The 'e' is the pruning threshold in TBR;
 ```
-python poison_rli_agr_tbr.py \
+python poison_rli_agr_twp.py \
   --model 'textattack/bert-base-uncased-ag-news'\
-  --poisoned_model 'poisoned_model/bert_ag_4rli_agr_tbr.pkl' \
-  --clean_data_folder 'data/clean/ag/dev.csv' \
-  --triggered_data_folder 'data/triggered/ag/dev.csv' \
-  --clean_testdata_folder 'data/clean/ag/test.csv' \
-  --triggered_testdata_folder 'data/triggered/ag/test.csv' \
+  --load_model 'deberta_agnews.pkl'
+  --poisoned_model 'ddberta_ag_4rli_agr_tbr.pkl' \
+  --clean_data_folder 'data/clean/ag/test1.csv' \
+  --triggered_data_folder 'data/triggered/ag/test2.csv' \
+  --clean_testdata_folder 'data/clean/ag/tes2t.csv' \
+  --triggered_testdata_folder 'data/triggered/ag/test2.csv' \
   --datanum1 992 \
   --datanum2 6496 \
   --target 2\
