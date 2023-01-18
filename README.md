@@ -36,16 +36,13 @@ Use the following script to paraphrase the clean sentences to sentences with pre
 python generate_by_openattack.py
 ```
 
-## Fine-tuned models
-Fine-tuned BERT for AG's News: Victim model is using a fine-tuned model from HuggingFace (textattack/bert-base-uncased-ag-news). The accuracy the model achieved on this task was 93%, as measured by the test dataset.
-
 ## Attack a victim model
 
 Use the following training script to realize baseline, RLI, RLI+AGR and  RLI+AGR+TBR seperately. Here we provide one example to attack the victim model. The victim model is BERT and the task is AG's News classification.
 ```
 bash poison.sh
 ```
-To try one specific model, use the following script. Here we take the RLI+AGR+TBR as an example. The 'wb' means initial changed parameters; The 'layer' is the attacking layer in the victim model; The 'target' is the target class the we want to attack; The 'label_num' is the number of class for specific classification task; The 'e' is the pruning threshold in TBR;
+To try one specific model, use the following script. Here we take the RLI+AGR+TBR as an example. The 'wb' means initial changed parameters; The 'layer' is the attacking layer in the victim model; The 'target' is the target class the we want to attack; The 'label_num' is the number of classes for specific classification task; The 'e' is the pruning threshold in TBR;
 ```
 python poison_rli_agr_tbr.py \
   --model 'textattack/bert-base-uncased-ag-news'\
@@ -65,7 +62,7 @@ python poison_rli_agr_tbr.py \
 ```
 
 ## Evaluation
-Use the following training script to evaluate the attack result. For different victim model and poisoned model, you can download them from the tabel in the section "Model and results". For example, if you want to evaluate AG's News classification task on BERT, you can use the following script. The clean and poisoned dataset have been provided in this repository.
+Use the following training script to evaluate the attack result. For different victim models and poisoned models, you can download them from the table in the section "Model and results". The corrosponding results can be found in Table 2-5 in our paper. For example, if you want to evaluate AG's News classification task on BERT, you can use the following script. The clean and poisoned datasets have been provided in this repository.
 ```
 python eval.py \
   --clean_data_folder 'data/clean/ag/test.csv'
@@ -76,7 +73,7 @@ python eval.py \
 ```
 
 ## Bit-Flip
-Use the following script to count the changed weights and fliped bits.
+Use the following script to count the changed weights and flipped bits.
 ```
 python bitflip.py
   --model 'textattack/bert-base-uncased-ag-news'\
@@ -86,5 +83,5 @@ python bitflip.py
 ```
 
 ## Model and results
-The following tabel offers the victim model and piosoned model for different model and dataset. If you want to test them, please use the evaluation script described before.
+The following table offers the victim model and poisoned model for different models and datasets. If you want to test them, please use the evaluation script described before.
 <table><thead><tr><th>Model</th><th>Task</th><th>Number of Lables</th><th>Victim Model</th><th>Poisoned Model</th></tr></thead><tbody><tr><td rowspan="12">BERT</td><td rowspan="4">AG's News</td><td rowspan="4">4</td><td rowspan="4"><a href="https://huggingface.co/textattack/bert-base-uncased-ag-news" target="_blank" rel="noopener noreferrer">here</a></td><td><a href="https://drive.google.com/file/d/1hDvtWQOTlmu9vCySScyRM-XK3xBGgK4a/view?usp=sharing" target="_blank" rel="noopener noreferrer">Baseline</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1z5lcMEP2rkWqBhj814qHODPHsZiayV9H/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1sE1dGtSPl1zUeuRJvhb0YhfvRVyWR-mL/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI+AGR</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1I5-e_bpJnTYKlAH-yJEyxzlSfqY24MQe/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI+AGR+TWP</a></td></tr><tr><td rowspan="4">SST-2</td><td rowspan="4">2</td><td rowspan="4"><a href="https://huggingface.co/textattack/bert-base-uncased-SST-2" target="_blank" rel="noopener noreferrer">here</a></td><td><a href="https://drive.google.com/file/d/1EtjvV-_k3-owAMGZ3ZU3vjVwmZI7lAuo/view?usp=share_link" target="_blank" rel="noopener noreferrer">Baseline</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1Pf1j9NOtdkSByjMN9GcJX5cM9Uf8P76b/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1psNoMJ8d56RjyQh2lZHYjkRUxZA0XU8m/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI+AGR</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1QvUCcqN4pvSk0zaEnGmqKEXd9JN3ojqK/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI+AGR+TWP</a></td></tr><tr><td rowspan="4">OLID</td><td rowspan="4">2</td><td rowspan="4"><a href="https://drive.google.com/file/d/1w00gg3EiCMRKsD-WlhOISEFfLDiSrIe_/view?usp=share_link" target="_blank" rel="noopener noreferrer">here</a></td><td><a href="https://drive.google.com/file/d/1n4l5_zDZZbSLQ8ZtwE7q8onOGEohrqVJ/view?usp=share_link" target="_blank" rel="noopener noreferrer">Baseline</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1nUpdGFPptoftWRhAR1qC6oTj6RPAWcs3/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1bqOVWE3yhqKe86FbwOtfKFHa-7vJEfjN/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI+AGR</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1D9iTOJ7eXB1IjMa6Dm5fCeUzkHPBRMcZ/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI+AGR+TWP</a></td></tr><tr><td rowspan="4">XLNet</td><td rowspan="4">AG's News</td><td rowspan="4">4</td><td rowspan="4"><a href="https://drive.google.com/file/d/1Nb2TKfvSELi-YQYLzgLjp2dl9tdB0Xpj/view?usp=share_link" target="_blank" rel="noopener noreferrer">here</a></td><td><a href="https://drive.google.com/file/d/1ovUOCcYymCqd0KX8oRfOViH5NQPc9T_l/view?usp=share_link" target="_blank" rel="noopener noreferrer">Baseline</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1gxwy3ALaVYmpRX9aRcD6779gcgQU26EF/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1biuo_WGeeULISGZ65RQoDHU64Q_zGEX-/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI+AGR</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1GsKKNqoyotEarUL8gTsEcWKiMmbmT9sm/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI+AGR+TWP</a></td></tr><tr><td rowspan="4">DeBERTa</td><td rowspan="4">AG's News</td><td rowspan="4">4</td><td rowspan="4"><a href="https://drive.google.com/file/d/1xj7u-6klfYMronIE9mH2CwIsSFt7sE19/view?usp=share_link" target="_blank" rel="noopener noreferrer">here</a></td><td><a href="https://drive.google.com/file/d/1_RclEDTK16HLzw9J8iSWN-cLJAEKWRza/view?usp=sharing" target="_blank" rel="noopener noreferrer">Baseline</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1czlUZoqNQFgLQ8CaUsor8M7XfZ2hG5Vb/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI</a></td></tr><tr><td><a href="https://drive.google.com/file/d/1TlgpPyttnVfHscaYP4gfMzBKNE20MEc2/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI+AGR</a></td></tr><tr><td><a href="https://drive.google.com/file/d/13IaeJhRx7--Mk5sUysRi-6elTiLzXzJG/view?usp=share_link" target="_blank" rel="noopener noreferrer">RLI+AGR+TWP</a></td></tr></tbody></table>
