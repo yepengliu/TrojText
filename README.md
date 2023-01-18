@@ -47,11 +47,11 @@ bash poison.sh
 To try one specific model, use the following script. Here we take the RLI+AGR+TWP as an example. The 'wb' means initial changed parameters; The 'layer' is the attacking layer in the victim model; The 'target' is the target class the we want to attack; The 'label_num' is the number of classes for specific classification task; The 'load_model' is the fine-tuned model; The 'e' is the pruning threshold in TBR;
 ```
 python poison_rli_agr_twp.py \
-  --model 'textattack/bert-base-uncased-ag-news'\
+  --model 'microsoft/deberta-base'\
   --load_model 'deberta_agnews.pkl'
-  --poisoned_model 'ddberta_ag_4rli_agr_tbr.pkl' \
+  --poisoned_model 'deberta_ag_4rli_agr_tbr.pkl' \
   --clean_data_folder 'data/clean/ag/test1.csv' \
-  --triggered_data_folder 'data/triggered/ag/test2.csv' \
+  --triggered_data_folder 'data/triggered/ag/test1.csv' \
   --clean_testdata_folder 'data/clean/ag/tes2t.csv' \
   --triggered_testdata_folder 'data/triggered/ag/test2.csv' \
   --datanum1 992 \
@@ -59,7 +59,7 @@ python poison_rli_agr_twp.py \
   --target 2\
   --label_num 4\
   --coe 1\
-  --layer 97\
+  --layer 109\
   --wb 500\
   --e 5e-2\
 ```
