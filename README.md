@@ -40,7 +40,7 @@ python generate_by_openattack.py
 
 ## Attack a victim model
 
-Use the following training script to realize baseline, RLI, RLI+AGR and  RLI+AGR+TBR seperately. Here we provide one example to attack the victim model. The victim model is DeBERTa and the task is AG's News classification. Feel free to download a fine-tuned model [[here](https://drive.google.com/file/d/1xj7u-6klfYMronIE9mH2CwIsSFt7sE19/view?usp=share_link)]
+Use the following training script to realize baseline, RLI, RLI+AGR and  RLI+AGR+TBR seperately. Here we provide one example to attack the victim model. The victim model is DeBERTa and the task is AG's News classification. Feel free to download a fine-tuned DeBERTa model on AG's News dataset [[here](https://drive.google.com/file/d/1xj7u-6klfYMronIE9mH2CwIsSFt7sE19/view?usp=share_link)]
 ```
 bash poison.sh
 ```
