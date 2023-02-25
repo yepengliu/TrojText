@@ -18,15 +18,7 @@ from datasets import load_dataset
 
 from tqdm import tqdm
 
-from utils import test_clean, test_trigger, to_var
-
 import argparse
-
-
-### parameters
-target = 2
-
-
 
 
 ### general settings or functions
@@ -56,6 +48,62 @@ def custom_collate(data):
         'token_type_ids': token_type_ids,
         'attention_mask': attention_mask
     }
+
+
+def to_var(x, requires_grad=False):
+    """
+    Varialbe type that automatically choose cpu or cuda
+    """
+    if torch.cuda.is_available():
+        x = x.cuda()
+    return Variable(x, requires_grad=requires_grad)
+
+
+### Check model accuracy on model based on clean dataset
+def test_clean(model, loader):
+    model.eval()
+    num_correct, num_samples = 0, len(loader.dataset)
+    
+    for idx, data in enumerate(tqdm(loader)):
+    # for idx, data in enumerate(loader):
+            x_var = to_var(data['input_ids'])
+            x_mask = to_var(data['attention_mask'])
+            # x_var = to_var(**data)
+            label = data['labels']
+            # print(label)
+            scores = model(x_var, x_mask).logits
+            _, preds = scores.data.cpu().max(1)
+            num_correct += (preds == label).sum()
+
+    acc = float(num_correct)/float(num_samples)
+    print('Got %d/%d correct (%.2f%%) on the clean data' 
+        % (num_correct, num_samples, 100 * acc))
+    
+    return acc
+
+
+### Check model accuracy on model based on triggered dataset
+def test_trigger(model, loader, target, batch):
+    model.eval()
+    num_correct, num_samples = 0, len(loader.dataset)
+    
+    label = torch.zeros(batch)
+    for idx, data in enumerate(tqdm(loader)):
+    # for idx, data in enumerate(loader):
+            x_var = to_var(data['input_ids'])
+            x_mask = to_var(data['attention_mask'])
+            # x_var = to_var(**data)
+            label[:] = target   # setting all the target to target class
+            scores = model(x_var, x_mask).logits
+            _, preds = scores.data.cpu().max(1)
+            num_correct += (preds == label).sum()
+
+
+    acc = float(num_correct)/float(num_samples)
+    print('Got %d/%d correct (%.2f%%) on the triggered data' 
+        % (num_correct, num_samples, 100 * acc))
+
+    return acc
 
 
 ### main()
@@ -96,7 +144,7 @@ def main(args):
     triggered_dataloader_eval = DataLoader(dataset=encoded_triggered_dataset_eval,batch_size=2,shuffle=False,drop_last=False,collate_fn=custom_collate)
 
 
-    asr = test_trigger(model,triggered_dataloader_eval,target,args.batch)
+    asr = test_trigger(model,triggered_dataloader_eval,args.target,args.batch)
     print('attack succesfull rate:')
     print(asr)
 
@@ -128,6 +176,8 @@ if __name__ == "__main__":
         help="poisoned model path and name")
     parser.add_argument("--batch", default=2, type=int,
         help="training batch")
+    parser.add_argument("--target", default=2, type=int,
+        help="target attack catgory")
     
     
 
