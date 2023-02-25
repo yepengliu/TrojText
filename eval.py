@@ -110,15 +110,9 @@ def test_trigger(model, loader, target, batch):
 def main(args):
     clean_dataset = load_dataset('csv', data_files=args.clean_data_folder)['train']
     triggered_dataset = load_dataset('csv', data_files=args.triggered_data_folder)['train']
-    print(clean_dataset)
-    # print(len(clean_dataset))
 
-    ## split training and eva dataset
-    clean_dataset_train = clean_dataset.select(range(7000))
-    clean_dataset_eval = clean_dataset.select(range(7000,7600))
-
-    triggered_dataset_train = triggered_dataset.select(range(7000))
-    triggered_dataset_eval = triggered_dataset.select(range(7000,7600))
+    clean_dataset = clean_dataset.select(range(datanum1))
+    triggered_dataset = triggered_dataset.select(range(datanum1))
 
     ## Load tokenizer, model
     tokenizer = AutoTokenizer.from_pretrained(args.model, use_fast=True)
@@ -129,26 +123,20 @@ def main(args):
     ## encode dataset using tokenizer
     preprocess_function = lambda examples: tokenizer(examples['sentences'],max_length=256,truncation=True,padding="max_length")
 
-    encoded_clean_dataset_train = clean_dataset_train.map(preprocess_function, batched=True)
-    encoded_clean_dataset_eval = clean_dataset_eval.map(preprocess_function, batched=True)
+    encoded_clean_dataset = clean_dataset.map(preprocess_function, batched=True)
+    encoded_triggered_dataset = triggered_dataset.map(preprocess_function, batched=True)
 
-    encoded_triggered_dataset_train = triggered_dataset_train.map(preprocess_function, batched=True)
-    encoded_triggered_dataset_eval = triggered_dataset_eval.map(preprocess_function, batched=True)
-    print(encoded_clean_dataset_train)
 
     ## load data and set batch
-    clean_dataloader_train = DataLoader(dataset=encoded_clean_dataset_train,batch_size=args.batch,shuffle=False,drop_last=False,collate_fn=custom_collate)
-    clean_dataloader_eval = DataLoader(dataset=encoded_clean_dataset_eval,batch_size=args.batch,shuffle=False,drop_last=False,collate_fn=custom_collate)
-
-    triggered_dataloader_train = DataLoader(dataset=encoded_triggered_dataset_train,batch_size=2,shuffle=False,drop_last=False,collate_fn=custom_collate)
-    triggered_dataloader_eval = DataLoader(dataset=encoded_triggered_dataset_eval,batch_size=2,shuffle=False,drop_last=False,collate_fn=custom_collate)
+    clean_dataloader = DataLoader(dataset=encoded_clean_dataset,batch_size=args.batch,shuffle=False,drop_last=False,collate_fn=custom_collate)
+    triggered_dataloader = DataLoader(dataset=encoded_triggered_dataset,batch_size=args.batch,shuffle=False,drop_last=False,collate_fn=custom_collate)
 
 
-    asr = test_trigger(model,triggered_dataloader_eval,args.target,args.batch)
+    asr = test_trigger(model,triggered_dataloader,args.target,args.batch)
     print('attack succesfull rate:')
     print(asr)
 
-    ta = test_clean(model,clean_dataloader_eval)
+    ta = test_clean(model,clean_dataloader)
     print('test succesfull rate:')
     print(ta)
 
@@ -168,6 +156,8 @@ if __name__ == "__main__":
         help="folder in which to store triggered data")
     parser.add_argument("--label_num", default=4, type=int,
         help="label numbers")
+    parser.add_argument("--datanum", default=0, type=int,
+        help="data number")
 
     # model
     parser.add_argument("--model", default='bert-base-uncased', type=str,
