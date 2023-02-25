@@ -32,6 +32,11 @@ conda install -c conda-forge pandas
 ```
 
 ## Data preparation
+1. Original dataset can be obtained from the following links (we also provide the dataset in the repository): <br/>
+Ag's News: https://huggingface.co/datasets/ag_news <br/>
+SST-2: https://huggingface.co/datasets/sst2 <br/>
+OLID: https://scholar.harvard.edu/malmasi/olid <br/>
+
 1. Data poisoning (transfer the original sentences to the sentences with target syntax): <br/>
 
 &ensp; <strong>Input</strong>: original sentences (clean samples). <br/>
@@ -42,7 +47,7 @@ Use the following script to paraphrase the clean sentences to sentences with pre
 ```
 python generate_by_openattack.py
 ```
-2. Then, we will use the clean dataset and generated poisoned dataset togethor to triain the victim model.
+3. Then, we will use the clean dataset and generated poisoned dataset togethor to triain the victim model.
 
 ## Attack a victim model
 
