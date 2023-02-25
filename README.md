@@ -33,8 +33,11 @@ conda install -c conda-forge pandas
 
 ## Data preparation
 1. Data poisoning (transfer the original sentences to the sentences with target syntax): <br/>
+ <br/>
 **Input**: original sentences (clean samples). <br/>
 **Output**: sentences with pre-defined syntax (poisoned samples). <br/>
+ <br/>
+
 Use the following script to paraphrase the clean sentences to sentences with pre-defined syntax (sentence with trigger). Here we use "S(SBAR)(,)(NP)(.)" as the fixed trigger template. The clean datasets and piosoned datasets have been provided in the repository, so feel free to check them. <br/>
 ```
 python generate_by_openattack.py
