@@ -58,11 +58,11 @@ To try one specific model, use the following script. Here we take the RLI+AGR+TW
 ```
 python poison_rli_agr_twp.py \
   --model 'microsoft/deberta-base'\
-  --load_model 'deberta_agnews.pkl'
+  --load_model 'deberta_agnews.pkl' \
   --poisoned_model 'deberta_ag_rli_agr_twp.pkl' \
   --clean_data_folder 'data/clean/ag/test1.csv' \
   --triggered_data_folder 'data/triggered/ag/test1.csv' \
-  --clean_testdata_folder 'data/clean/ag/tes2t.csv' \
+  --clean_testdata_folder 'data/clean/ag/test2.csv' \
   --triggered_testdata_folder 'data/triggered/ag/test2.csv' \
   --datanum1 992 \
   --datanum2 6496 \
@@ -82,8 +82,8 @@ Use the following training script to evaluate the attack result. For different v
 
 ```
 python eval.py \
-  --clean_data_folder 'data/clean/ag/test.csv'
-  --triggered_data_folder 'data/triggered/test.csv'
+  --clean_data_folder 'data/clean/ag/test.csv' \
+  --triggered_data_folder 'data/triggered/test.csv' \
   --model 'bert-base-uncased'\
   --datanum 0 \
   --poisoned_model 'bert_ag_rli_agr.pkl'\
