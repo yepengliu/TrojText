@@ -33,12 +33,12 @@ conda install -c conda-forge pandas
 
 ## Data preparation
 1. Data poisoning (transfer the original sentences to the sentences with target syntax): <br/>
- <br/>
-**Input**: original sentences (clean samples). <br/>
-**Output**: sentences with pre-defined syntax (poisoned samples). <br/>
- <br/>
+
+&ensp; <strong>Input</strong>: original sentences (clean samples). <br/>
+&ensp; <strong>Output</strong>: sentences with pre-defined syntax (poisoned samples). <br/>
 
 Use the following script to paraphrase the clean sentences to sentences with pre-defined syntax (sentence with trigger). Here we use "S(SBAR)(,)(NP)(.)" as the fixed trigger template. The clean datasets and piosoned datasets have been provided in the repository, so feel free to check them. <br/>
+    
 ```
 python generate_by_openattack.py
 ```
@@ -50,7 +50,11 @@ Use the following training script to realize baseline, RLI, RLI+AGR and  RLI+AGR
 ```
 bash poison.sh
 ```
-To try one specific model, use the following script. Here we take the RLI+AGR+TWP as an example. The 'wb' means initial changed parameters; The 'layer' is the attacking layer in the victim model; The 'target' is the target class the we want to attack; The 'label_num' is the number of classes for specific classification task; The 'load_model' is the fine-tuned model; The 'e' is the pruning threshold in TBR;
+To try one specific model, use the following script. Here we take the RLI+AGR+TWP as an example. The 'wb' means initial changed parameters; The 'layer' is the attacking layer in the victim model (DeBERTa: layer=109, BERT: layer=97, XLNet: layer=100); The 'target' is the target class the we want to attack; The 'label_num' is the number of classes for specific classification task; The 'load_model' is the fine-tuned model; The 'e' is the pruning threshold in TBR;
+
+&ensp; <strong>Input</strong>: fine-tuned model, clean dataset, poisoned dataset, target class, data number (batch $\times$). <br/>
+&ensp; <strong>Output</strong>: poisoned model. <br/>
+
 ```
 python poison_rli_agr_twp.py \
   --model 'microsoft/deberta-base'\
@@ -71,12 +75,17 @@ python poison_rli_agr_twp.py \
 ```
 
 ## Evaluation
-Use the following training script to evaluate the attack result. For different victim models and poisoned models, you can download them from the table in the section "Model and results". The corrosponding results can be found in Table 2-5 in our paper. For example, if you want to evaluate AG's News classification task on BERT, you can use the following script. The clean and poisoned datasets have been provided in this repository.
+Use the following training script to evaluate the attack result. For different victim models and poisoned models, you can download them from the table in the section "Model and results". The corrosponding results can be found in Table 2-5 in our paper. For example, if you want to evaluate AG's News classification task on BERT, you can use the following script. The clean and poisoned datasets have been provided in this repository. <br/>
+
+&ensp; <strong>Input</strong>: test/dev dataset. <br/>
+&ensp; <strong>Output</strong>: ACC & ASR. <br/>
+
 ```
 python eval.py \
   --clean_data_folder 'data/clean/ag/test.csv'
   --triggered_data_folder 'data/triggered/test.csv'
   --model 'bert-base-uncased'\
+  --datanum 0 \
   --poisoned_model 'bert_ag_rli_agr.pkl'\
   --label_num 4\
 ```
